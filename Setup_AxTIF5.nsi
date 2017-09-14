@@ -10,8 +10,12 @@
 
 !define COM   "HIRAOKA HYPERS TOOLS, Inc."
 
-!define VER    "1.3.2"
-!define APPVER "1_3_2"
+!system 'DefineAsmVer.exe "RELEASE\${APP}.ocx" "!define VER ""[SVER]"" " > Tmpver.nsh'
+!include "Tmpver.nsh"
+!searchreplace APPVER ${VER} "." "_"
+
+!system 'MySign "Release\${APP}.ocx"'
+!finalize 'MySign "%1"'
 
 !define MIME "image/tiff"
 
@@ -91,7 +95,7 @@ UninstPage instfiles
 
 ;--------------------------------
 
-Section /o "関連付け削除(アカウント単位の設定)"
+Section "関連付け削除(アカウント単位の設定)"
   StrCpy $0 0
 Loop:
   EnumRegKey $1 HKU "" $0
