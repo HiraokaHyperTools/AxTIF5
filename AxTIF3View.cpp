@@ -262,7 +262,7 @@ void CAxTIF3View::OnDraw(CDC* pDC)
 			pDC->SetStretchBltMode(strMode);
 		}
 		else {
-			p->Draw(pDC->GetSafeHdc(), xp, yp, cx, cy, m_rcPaint);
+			p->Draw(pDC->GetSafeHdc(), xp, yp, cx, cy, m_rcPaint, true);
 		}
 
 		CRect rcBox(xp, yp, xp+cx, yp+cy);

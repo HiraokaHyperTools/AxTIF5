@@ -4,9 +4,9 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Tue Dec 27 16:43:28 2016
+/* at Sat Jun 09 09:40:08 2018
  */
-/* Compiler settings for .\AxTIF5.idl:
+/* Compiler settings for AxTIF5.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
     protocol : dce , ms_ext, c_ext
     error checks: allocation ref bounds_check enum stub_data 

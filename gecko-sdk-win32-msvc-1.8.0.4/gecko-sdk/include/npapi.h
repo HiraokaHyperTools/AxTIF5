@@ -49,22 +49,22 @@
 #endif
 
 #include "prtypes.h"
-/* Copied from xp_core.h */
-/* removed #ifdef for hpux defined in /usr/include/model.h */
-#ifndef XP_MAC
-#ifndef _INT16
-#define _INT16
-#endif
-#ifndef _INT32
-#define _INT32
-#endif
-#ifndef _UINT16
-#define _UINT16
-#endif
-#ifndef _UINT32
-#define _UINT32
-#endif
-#endif
+///* Copied from xp_core.h */
+///* removed #ifdef for hpux defined in /usr/include/model.h */
+//#ifndef XP_MAC
+//#ifndef _INT16
+//#define _INT16
+//#endif
+//#ifndef _INT32
+//#define _INT32
+//#endif
+//#ifndef _UINT16
+//#define _UINT16
+//#endif
+//#ifndef _UINT32
+//#define _UINT32
+//#endif
+//#endif
 
 /* 
  * NO_NSPR_10_SUPPORT disables the inclusion 

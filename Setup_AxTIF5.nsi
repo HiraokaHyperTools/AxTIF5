@@ -5,6 +5,8 @@
 ; prompts the user asking them where to install, and drops a copy of example1.nsi
 ; there. 
 
+Unicode true
+
 !define APP   "AxTIF5"
 !define TITLE "Ax TIFF Viewer five"
 
@@ -53,6 +55,10 @@ AutoCloseWindow true
 AllowSkipFiles off
 
 XPStyle on
+
+LoadLanguageFile "${NSISDIR}\Contrib\Language files\Japanese-MeiryoUI.nlf"
+
+SetCompressor /solid lzma
 
 ;--------------------------------
 
