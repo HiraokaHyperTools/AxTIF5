@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AboutDlg.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="AxTIF3Doc.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="AxTIF3View.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="AxTIF5.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="AxTIF5Ctrl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="AxTIF5PropPage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="InnerFrame.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="np.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AxTIF5.def">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="res\Credits.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="AxTIF5.idl">
+      <Filter>ソース ファイル</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF3.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF3Doc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF3View.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF5.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF5Ctrl.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AxTIF5PropPage.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="InnerFrame.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="RUt.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SrvrItem.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\about.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="AxTIF5.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="AxTIF5Ctrl.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\ddown.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\fitw.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\fitwh.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\gear.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\mag.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\magbtn.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\move.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\movebtn.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\next.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\prev.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\rotl.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\rotr.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\trick.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\zoompbar.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\zoomval.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AxTIF5.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
