@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by AxTIF5.rc
+// Microsoft Visual C++ で生成されたインクルード ファイル。
+// AxTIF5.rc で使用
 //
 #define IDS_AXTIF5                      1
 #define IDD_ABOUTBOX_AXTIF5             1
@@ -18,6 +18,7 @@
 #define IDD_PROPPAGE_AXTIF5             201
 #define IDC_CREDITS                     202
 #define IDR_CREDITS                     203
+#define IDC_COPYRIGHT                   203
 #define IDC_VER                         204
 #define IDB_FITWH                       205
 #define IDB_FITW                        206
@@ -45,9 +46,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        212
+#define _APS_NEXT_RESOURCE_VALUE        213
 #define _APS_NEXT_COMMAND_VALUE         32795
-#define _APS_NEXT_CONTROL_VALUE         203
+#define _APS_NEXT_CONTROL_VALUE         204
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

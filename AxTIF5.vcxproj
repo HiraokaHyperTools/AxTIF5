@@ -14,7 +14,7 @@
     <ProjectGuid>{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}</ProjectGuid>
     <RootNamespace>AxTIF5</RootNamespace>
     <Keyword>MFCActiveXProj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -49,11 +49,13 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -81,9 +83,8 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>true</RegisterOutput>
-      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName).ocx</OutputFile>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/Debug/;./cximage600_full/zlib/Debug/;./cximage600_full/jpeg/Debug/;./cximage600_full/tiff/Debug/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -114,9 +115,8 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>true</RegisterOutput>
-      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(ProjectName).ocx</OutputFile>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/Release/;./cximage600_full/zlib/Release/;./cximage600_full/jpeg/Release/;./cximage600_full/tiff/Release/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
