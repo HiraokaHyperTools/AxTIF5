@@ -23,5 +23,6 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	CRichEditCtrl m_credits;
+	CStatic m_copyright;
 	CStatic m_wndVer;
 };

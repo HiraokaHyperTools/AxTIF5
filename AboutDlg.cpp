@@ -25,6 +25,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_CREDITS, m_credits);
+	DDX_Control(pDX, IDC_COPYRIGHT, m_copyright);
 	DDX_Control(pDX, IDC_VER, m_wndVer);
 }
 
@@ -101,6 +102,17 @@ BOOL CAboutDlg::OnInitDialog()
 			m_wndVer.GetWindowText(text);
 			text.Replace(_T("###"), strVer);
 			m_wndVer.SetWindowText(text);
+		}
+
+		{
+			char month[5];
+			int day = 0;
+			int year = 0;
+			sscanf(__DATE__, "%3s %d %d", month, &day, &year);
+
+			CString text;
+			text.Format(_T("Copyright (C) 2011-%d HIRAOKA HYPERS TOOLS, Inc."), year);
+			m_copyright.SetWindowText(text);
 		}
 	}
 

@@ -56,7 +56,7 @@ AllowSkipFiles off
 
 XPStyle on
 
-LoadLanguageFile "${NSISDIR}\Contrib\Language files\Japanese-MeiryoUI.nlf"
+LoadLanguageFile "${NSISDIR}\Contrib\Language files\Japanese.nlf"
 
 SetCompressor /solid lzma
 
