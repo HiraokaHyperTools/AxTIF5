@@ -147,6 +147,12 @@
     <Image Include="res\zoomval.bmp">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="res\first.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\last.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AxTIF5.rc">

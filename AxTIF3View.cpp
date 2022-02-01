@@ -12,8 +12,10 @@
 #define new DEBUG_NEW
 #endif
 
+const int cxBMFirst = 32;
 const int cxBMPrev = 32;
 const int cxBMNext = 32;
+const int cxBMLast = 32;
 
 const int cxBMGear = 254;
 const int cyBar = 24;
@@ -323,6 +325,14 @@ void CAxTIF3View::OnDraw(CDC* pDC)
 		dc.SelectObject(pOrg);
 		pDC->ExcludeClipRect(m_rcGear);
 	}
+	if (pDC->RectVisible(m_rcFirst)) {
+		CDC dc;
+		dc.CreateCompatibleDC(pDC);
+		CBitmap* pOrg = dc.SelectObject(&m_bmFirst);
+		pDC->BitBlt(m_rcFirst.left, m_rcFirst.top, m_rcFirst.Width(), m_rcFirst.Height(), &dc, 0, 0, SRCCOPY);
+		dc.SelectObject(pOrg);
+		pDC->ExcludeClipRect(m_rcFirst);
+	}
 	if (pDC->RectVisible(m_rcPrev)) {
 		CDC dc;
 		dc.CreateCompatibleDC(pDC);
@@ -338,6 +348,14 @@ void CAxTIF3View::OnDraw(CDC* pDC)
 		pDC->BitBlt(m_rcNext.left, m_rcNext.top, m_rcNext.Width(), m_rcNext.Height(), &dc, 0, 0, SRCCOPY);
 		dc.SelectObject(pOrg);
 		pDC->ExcludeClipRect(m_rcNext);
+	}
+	if (pDC->RectVisible(m_rcLast)) {
+		CDC dc;
+		dc.CreateCompatibleDC(pDC);
+		CBitmap* pOrg = dc.SelectObject(&m_bmLast);
+		pDC->BitBlt(m_rcLast.left, m_rcLast.top, m_rcLast.Width(), m_rcLast.Height(), &dc, 0, 0, SRCCOPY);
+		dc.SelectObject(pOrg);
+		pDC->ExcludeClipRect(m_rcLast);
 	}
 	if (pDC->RectVisible(m_rcRotl)) {
 		CDC dc;
@@ -480,8 +498,10 @@ int CAxTIF3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		|| !m_bmMove.LoadBitmap(IDB_MOVE)
 		|| !m_bmGear.LoadBitmap(IDB_GEAR)
 		|| !m_bmTrick.LoadBitmap(IDB_TRICK)
+		|| !m_bmFirst.LoadBitmap(IDB_FIRST)
 		|| !m_bmPrev.LoadBitmap(IDB_PREV)
 		|| !m_bmNext.LoadBitmap(IDB_NEXT)
+		|| !m_bmLast.LoadBitmap(IDB_LAST)
 		|| !m_bmAbout.LoadBitmap(IDB_ABOUT)
 		|| !m_bmFitWH.LoadBitmap(IDB_FITWH)
 		|| !m_bmFitW.LoadBitmap(IDB_FITW)
@@ -647,6 +667,14 @@ void CAxTIF3View::OnLButtonDown(UINT nFlags, CPoint point) {
 
 			SetCapture();
 		}
+		else if (m_rcFirst.PtInRect(point)) {
+			if (m_iPage > 0) {
+				m_iPage = 0;
+				LayoutClient();
+				InvalidateRect(m_rcPaint, false);
+				InvalidateRect(m_rcDisp, false);
+			}
+		}
 		else if (m_rcPrev.PtInRect(point)) {
 			if (m_iPage > 0) {
 				m_iPage--;
@@ -661,6 +689,14 @@ void CAxTIF3View::OnLButtonDown(UINT nFlags, CPoint point) {
 				LayoutClient();
 				InvalidateRect(m_rcPaint,false);
 				InvalidateRect(m_rcDisp,false);
+			}
+		}
+		else if (m_rcLast.PtInRect(point)) {
+			if (m_iPage + 1 < CntPages()) {
+				m_iPage = CntPages() - 1;
+				LayoutClient();
+				InvalidateRect(m_rcPaint, false);
+				InvalidateRect(m_rcDisp, false);
 			}
 		}
 		else if (m_rcRotl.PtInRect(point)) {
@@ -757,8 +793,10 @@ void CAxTIF3View::LayoutClient() {
 		m_rcFitWH =
 		m_rcGear =
 		m_rcGearOn =
+		m_rcFirst =
 		m_rcPrev =
 		m_rcNext =
+		m_rcLast =
 		m_rcDisp =
 		m_rcAbout = 
 		m_rcMMSel =
@@ -801,6 +839,13 @@ void CAxTIF3View::LayoutClient() {
 		m_rcGearOn.left += 7;
 		m_rcGearOn.right -= 7;
 
+		curx += 8;
+
+		m_rcFirst.left = curx;
+		m_rcFirst.bottom = rc.bottom;
+		m_rcFirst.right = curx = (curx += cxBMFirst);
+		m_rcFirst.top = rc.bottom - cyBar;
+
 		m_rcPrev.left = curx;
 		m_rcPrev.bottom = rc.bottom;
 		m_rcPrev.right = curx = (curx += cxBMPrev);
@@ -810,6 +855,11 @@ void CAxTIF3View::LayoutClient() {
 		m_rcNext.bottom = rc.bottom;
 		m_rcNext.right = curx = (curx += cxBMNext);
 		m_rcNext.top = rc.bottom - cyBar;
+
+		m_rcLast.left = curx;
+		m_rcLast.bottom = rc.bottom;
+		m_rcLast.right = curx = (curx += cxBMLast);
+		m_rcLast.top = rc.bottom - cyBar;
 
 		m_rcDisp.left = curx ;
 		m_rcDisp.bottom = rc.bottom;
@@ -832,6 +882,13 @@ void CAxTIF3View::LayoutClient() {
 		m_rcZoomVal.right = (curx += 48);
 		m_rcZoomVal.top = rc.bottom - cyBar;
 
+		curx += 8;
+
+		m_rcFirst.left = curx;
+		m_rcFirst.bottom = rc.bottom;
+		m_rcFirst.right = curx = (curx += cxBMFirst);
+		m_rcFirst.top = rc.bottom - cyBar;
+
 		m_rcPrev.left = curx;
 		m_rcPrev.bottom = rc.bottom;
 		m_rcPrev.right = curx = (curx += cxBMPrev);
@@ -846,6 +903,11 @@ void CAxTIF3View::LayoutClient() {
 		m_rcNext.bottom = rc.bottom;
 		m_rcNext.right = curx = (curx += cxBMNext);
 		m_rcNext.top = rc.bottom - cyBar;
+
+		m_rcLast.left = curx;
+		m_rcLast.bottom = rc.bottom;
+		m_rcLast.right = curx = (curx += cxBMLast);
+		m_rcLast.top = rc.bottom - cyBar;
 
 		curx += 8;
 

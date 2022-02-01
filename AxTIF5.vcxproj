@@ -170,9 +170,11 @@
     <Image Include="AxTIF5Ctrl.bmp" />
     <Image Include="res\about.bmp" />
     <Image Include="res\ddown.bmp" />
+    <Image Include="res\first.bmp" />
     <Image Include="res\fitw.bmp" />
     <Image Include="res\fitwh.bmp" />
     <Image Include="res\gear.bmp" />
+    <Image Include="res\last.bmp" />
     <Image Include="res\mag.bmp" />
     <Image Include="res\magbtn.bmp" />
     <Image Include="res\move.bmp" />
