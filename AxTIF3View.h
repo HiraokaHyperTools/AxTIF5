@@ -37,7 +37,7 @@ protected:
 
 // 生成された、メッセージ割り当て関数
 protected:
-	afx_msg void OnCancelEditSrvr();
+	afx_msg void OnFilePrint();
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -46,7 +46,7 @@ public:
 	CScrollBar m_sbH, m_sbV;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	CRect m_rcPaint, m_rcGlass, m_rcMove, m_rcGear, m_rcGearOn, m_rcFirst, m_rcPrev, m_rcNext, m_rcLast,
-		m_rcDisp, m_rcAbout, m_rcFitWH, m_rcFitW, m_rcRotl, m_rcRotr;
+		m_rcDisp, m_rcPrt, m_rcAbout, m_rcFitWH, m_rcFitW, m_rcRotl, m_rcRotr;
 	CRect m_rcMMSel, m_rcZoomVal;
 	CxImage *getPic(int frame = -1) const;
 	CxImage *GetPic(int frame = -1) {
@@ -60,7 +60,7 @@ public:
 	SCROLLINFO m_siH, m_siV;
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	CBitmap m_bmMag, m_bmMove, m_bmGear, m_bmTrick, m_bmFirst, m_bmPrev, m_bmNext, m_bmLast,
-		m_bmAbout, m_bmFitWH, m_bmFitW, m_bmMagBtn, m_bmMoveBtn, m_bmRotl, m_bmRotr;
+		m_bmPrt, m_bmAbout, m_bmFitWH, m_bmFitW, m_bmMagBtn, m_bmMoveBtn, m_bmRotl, m_bmRotr;
 	CBitmap m_bmZoomVal;
 	bool m_toolZoom;
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

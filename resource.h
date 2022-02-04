@@ -30,6 +30,8 @@
 #define IDB_ROTL                        212
 #define IDB_FIRST                       213
 #define IDB_LAST                        214
+#define IDB_BITMAP1                     216
+#define IDB_PRT                         216
 #define IDC_P6                          987
 #define IDC_P12                         988
 #define IDC_P25                         989
@@ -43,13 +45,14 @@
 #define IDC_MOVE                        997
 #define IDC_HORZ                        998
 #define IDC_VERT                        999
+#define IDC_PRINT 1100
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        215
-#define _APS_NEXT_COMMAND_VALUE         32795
+#define _APS_NEXT_RESOURCE_VALUE        217
+#define _APS_NEXT_COMMAND_VALUE         1101
 #define _APS_NEXT_CONTROL_VALUE         204
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

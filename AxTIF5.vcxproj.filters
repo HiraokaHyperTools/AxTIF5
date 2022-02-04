@@ -153,6 +153,9 @@
     <Image Include="res\last.bmp">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="res\prt.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AxTIF5.rc">
