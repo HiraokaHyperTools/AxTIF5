@@ -1276,7 +1276,6 @@ public:
 
 	CPrintOptsDlg(CWnd *pParent = NULL)
 		: CDialog(IDD, pParent)
-		, m_strSelect(m_pairs[0].pszName)
 	{
 	}
 
@@ -1287,8 +1286,20 @@ public:
 			m_comboSelect.AddString(m_pairs[y].pszName);
 		}
 
+		RUt::GetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("usemargin"), m_bUseMargin, FALSE);
+		RUt::GetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("fixpapersize"), m_bFixPaperSize, FALSE);
+		RUt::GetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("dontzoom"), m_bDontZoom, FALSE);
+		RUt::GetStr(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("paperselect"), m_strSelect, m_pairs[0].pszName);
+
 		UpdateData(false);
 		return true;
+	}
+
+	void SaveToReg() {
+		RUt::SetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("usemargin"), m_bUseMargin);
+		RUt::SetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("fixpapersize"), m_bFixPaperSize);
+		RUt::SetBool(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("dontzoom"), m_bDontZoom);
+		RUt::SetStr(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("paperselect"), m_strSelect);
 	}
 
 	void DoDataExchange(CDataExchange* pDX) {
@@ -1300,7 +1311,7 @@ public:
 		DDX_CBStringExact(pDX, IDC_SELECT_PAPERSIZE, m_strSelect);
 	}
 
-	bool GetPaperSize(short &dmPaperSize, short &dmOrientation) {
+	bool GetPaperSizeAnd(short &dmPaperSize, short &dmOrientation) {
 		for (int y = 0; m_pairs[y].pszName != NULL; y++) {
 			if (m_strSelect == m_pairs[y].pszName) {
 				dmPaperSize = m_pairs[y].dmPaperSize;
@@ -1400,6 +1411,8 @@ void CAxTIF3View::OnFilePrint() {
 		return;
 	}
 
+	dlg.opts.SaveToReg();
+
 	DEVMODE *devmode = dlg.GetDevMode();
 
 	CDC printer;
@@ -1430,7 +1443,7 @@ void CAxTIF3View::OnFilePrint() {
 			int dy = printer.GetDeviceCaps(LOGPIXELSY);
 
 			PaperSizeLite guessed;
-			if (dlg.opts.m_bFixPaperSize && dlg.opts.GetPaperSize(devmode->dmPaperSize, devmode->dmOrientation)) {
+			if (dlg.opts.m_bFixPaperSize && dlg.opts.GetPaperSizeAnd(devmode->dmPaperSize, devmode->dmOrientation)) {
 				devmode->dmOrientation = (mmWidth < mmHeight) ? DMORIENT_PORTRAIT : DMORIENT_LANDSCAPE;
 			}
 			else if (PaperSizeUtil::Guess(mmWidth, mmHeight, guessed)) {
