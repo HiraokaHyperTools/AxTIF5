@@ -7,6 +7,7 @@
 #define IDB_AXTIF5                      1
 #define IDI_ABOUTDLL                    1
 #define IDS_AXTIF5_PPG                  2
+#define IDD_PRINT_OPTS                  101
 #define IDB_MAG                         131
 #define IDB_MOVE                        132
 #define IDB_GEAR                        133
@@ -25,9 +26,14 @@
 #define IDB_MAGBTN                      207
 #define IDB_MOVEBTN                     208
 #define IDR_MENU_P                      209
+#define IDC_USE_MARGIN                  209
 #define IDB_ZOOMVAL                     210
+#define IDC_FIX_PAPERSIZE               210
 #define IDB_ROTR                        211
+#define IDC_SELECT_PAPERSIZE            211
 #define IDB_ROTL                        212
+#define IDC_FIX_PAPERSIZE2              212
+#define IDC_DONT_ZOOM                   212
 #define IDB_FIRST                       213
 #define IDB_LAST                        214
 #define IDB_BITMAP1                     216
@@ -45,15 +51,15 @@
 #define IDC_MOVE                        997
 #define IDC_HORZ                        998
 #define IDC_VERT                        999
-#define IDC_PRINT 1100
+#define IDC_PRINT                       1100
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        217
+#define _APS_NEXT_RESOURCE_VALUE        220
 #define _APS_NEXT_COMMAND_VALUE         1101
-#define _APS_NEXT_CONTROL_VALUE         204
+#define _APS_NEXT_CONTROL_VALUE         212
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

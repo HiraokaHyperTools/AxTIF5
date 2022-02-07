@@ -30,4 +30,34 @@ public:
 		}
 	}
 
+	static CRect Fit(CRect rcClip, CSize sizePic, int xPlace = 0, int yPlace = 0) {
+		if (sizePic.cx <= rcClip.Width() && sizePic.cy <= rcClip.Height()) {
+			int x = rcClip.left;
+			if (xPlace < 0) {
+				// nop
+			}
+			else if (xPlace == 0) {
+				x += (rcClip.Width() - sizePic.cx) / 2;
+			}
+			else {
+				x += rcClip.Width() - sizePic.cx;
+			}
+
+			int y = rcClip.top;
+			if (yPlace < 0) {
+				// nop
+			}
+			else if (yPlace == 0) {
+				y += (rcClip.Height() - sizePic.cy) / 2;
+			}
+			else {
+				y += rcClip.Height() - sizePic.cy;
+			}
+
+			return CRect(x, y, x + sizePic.cx, y + sizePic.cy);
+		}
+		else {
+			return ZoomFit(rcClip, sizePic);
+		}
+	}
 };
