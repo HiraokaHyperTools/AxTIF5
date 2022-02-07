@@ -5,8 +5,9 @@
 class PaperSizeUtil {
 public:
 	static bool Guess(float mmWidth, float mmHeight, PaperSizeLite &ps) {
-		float X = min(mmWidth, mmHeight);
-		float Y = max(mmWidth, mmHeight);
+		// cm
+		float X = min(mmWidth, mmHeight) / 10;
+		float Y = max(mmWidth, mmHeight) / 10;
 
 		ps.dmOrientation = (X <= Y) ? DMORIENT_PORTRAIT : DMORIENT_LANDSCAPE;
 
