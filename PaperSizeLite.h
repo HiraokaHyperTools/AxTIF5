@@ -19,4 +19,11 @@ public:
 		dm.dmPaperLength = dmPaperLength;
 		dm.dmPaperWidth = dmPaperWidth;
 	}
+
+	void CopyFrom(const DEVMODE &dm) {
+		dmOrientation = dm.dmOrientation;
+		dmPaperSize = dm.dmPaperSize;
+		dmPaperLength = dm.dmPaperLength;
+		dmPaperWidth = dm.dmPaperWidth;
+	}
 };

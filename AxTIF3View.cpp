@@ -1275,6 +1275,9 @@ void CAxTIF3View::OnFilePrint() {
 	ZeroMemory(&di, sizeof(di));
 	di.cbSize = sizeof(di);
 
+	PaperSizeLite defaultPaperSize;
+	defaultPaperSize.CopyFrom(*devmode);
+
 	devmode->dmFields |= DM_PAPERSIZE | DM_ORIENTATION;
 
 	printer.StartDoc(&di);
@@ -1288,9 +1291,16 @@ void CAxTIF3View::OnFilePrint() {
 			double mmWidth = bmWidth / (double)xDpi * 25.4;
 			double mmHeight = bmHeight / (double)yDpi * 25.4;
 
-			PaperSizeLite psLite;
-			PaperSizeUtil::Guess(mmWidth, mmHeight, psLite);
-			psLite.CopyTo(*devmode);
+			int dx = printer.GetDeviceCaps(LOGPIXELSX);
+			int dy = printer.GetDeviceCaps(LOGPIXELSY);
+
+			PaperSizeLite guessed;
+			if (PaperSizeUtil::Guess(mmWidth, mmHeight, guessed)) {
+				guessed.CopyTo(*devmode);
+			}
+			else {
+				defaultPaperSize.CopyTo(*devmode);
+			}
 
 			printer.ResetDC(devmode);
 			printer.StartPage();
@@ -1300,7 +1310,13 @@ void CAxTIF3View::OnFilePrint() {
 			int cx = printer.GetDeviceCaps(PHYSICALWIDTH);
 			int cy = printer.GetDeviceCaps(PHYSICALHEIGHT);
 			CRect rcPaper(-ox, -oy, cx, cy);
-			CRect rcDraw = FitRect3::ZoomFit(rcPaper, CSize(bmWidth / xDpi, bmHeight / yDpi));
+			CRect rcDraw = FitRect3::ZoomFit(
+				rcPaper, 
+				CSize(
+					int(bmWidth / (float)xDpi * dx), 
+					int(bmHeight / (float)yDpi * dy)
+				)
+			);
 			p->Draw(printer, rcDraw);
 			printer.EndPage();
 		}
