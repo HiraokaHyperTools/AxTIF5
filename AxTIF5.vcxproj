@@ -159,7 +159,10 @@
     <ClInclude Include="AxTIF5.h" />
     <ClInclude Include="AxTIF5Ctrl.h" />
     <ClInclude Include="AxTIF5PropPage.h" />
+    <ClInclude Include="FitRect3.h" />
     <ClInclude Include="InnerFrame.h" />
+    <ClInclude Include="PaperSizeLite.h" />
+    <ClInclude Include="PaperSizeUtil.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RUt.h" />
     <ClInclude Include="SrvrItem.h" />

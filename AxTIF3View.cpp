@@ -7,6 +7,9 @@
 #include "AxTIF3Doc.h"
 #include "AxTIF3View.h"
 #include "RUt.h"
+#include "PaperSizeUtil.h"
+#include "PaperSizeLite.h"
+#include "FitRect3.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1285,8 +1288,9 @@ void CAxTIF3View::OnFilePrint() {
 			double mmWidth = bmWidth / (double)xDpi * 25.4;
 			double mmHeight = bmHeight / (double)yDpi * 25.4;
 
-			devmode->dmOrientation = (mmWidth > mmHeight) ? DMORIENT_LANDSCAPE : DMORIENT_PORTRAIT;
-			devmode->dmPaperSize = DMPAPER_A4;
+			PaperSizeLite psLite;
+			PaperSizeUtil::Guess(mmWidth, mmHeight, psLite);
+			psLite.CopyTo(*devmode);
 
 			printer.ResetDC(devmode);
 			printer.StartPage();
@@ -1295,7 +1299,9 @@ void CAxTIF3View::OnFilePrint() {
 			int oy = printer.GetDeviceCaps(PHYSICALOFFSETY);
 			int cx = printer.GetDeviceCaps(PHYSICALWIDTH);
 			int cy = printer.GetDeviceCaps(PHYSICALHEIGHT);
-			p->Draw(printer, CRect(0, 0, cx, cy));
+			CRect rcPaper(-ox, -oy, cx, cy);
+			CRect rcDraw = FitRect3::ZoomFit(rcPaper, CSize(bmWidth / xDpi, bmHeight / yDpi));
+			p->Draw(printer, rcDraw);
 			printer.EndPage();
 		}
 	}
