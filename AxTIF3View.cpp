@@ -1255,9 +1255,11 @@ void CAxTIF3View::RotPic(int a) {
 
 class CPrintOptsDlg : public CDialog {
 	DECLARE_DYNAMIC(CPrintOptsDlg);
+	DECLARE_MESSAGE_MAP();
 
 	CComboBox m_comboSelect;
 	CString m_strSelect;
+	CButton m_wndFixPaperSize;
 
 public:
 	class Pair {
@@ -1292,6 +1294,7 @@ public:
 		RUt::GetStr(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("paperselect"), m_strSelect, m_pairs[0].pszName);
 
 		UpdateData(false);
+		OnFixPaperSizeClicked();
 		return true;
 	}
 
@@ -1306,6 +1309,7 @@ public:
 		CDialog::DoDataExchange(pDX);
 		DDX_Check(pDX, IDC_USE_MARGIN, m_bUseMargin);
 		DDX_Check(pDX, IDC_FIX_PAPERSIZE, m_bFixPaperSize);
+		DDX_Control(pDX, IDC_FIX_PAPERSIZE, m_wndFixPaperSize);
 		DDX_Check(pDX, IDC_DONT_ZOOM, m_bDontZoom);
 		DDX_Control(pDX, IDC_SELECT_PAPERSIZE, m_comboSelect);
 		DDX_CBStringExact(pDX, IDC_SELECT_PAPERSIZE, m_strSelect);
@@ -1321,7 +1325,17 @@ public:
 		}
 		return false;
 	}
+
+	void OnFixPaperSizeClicked() {
+		m_comboSelect.EnableWindow(
+			(m_wndFixPaperSize.GetCheck() == BST_CHECKED) ? true : false
+		);
+	}
 };
+
+BEGIN_MESSAGE_MAP(CPrintOptsDlg, CDialog)
+	ON_BN_CLICKED(IDC_FIX_PAPERSIZE, OnFixPaperSizeClicked)
+END_MESSAGE_MAP()
 
 CPrintOptsDlg::Pair CPrintOptsDlg::m_pairs[] = {
 	{_T("A4 縦"), DMPAPER_A4, DMORIENT_PORTRAIT, },
