@@ -1580,7 +1580,7 @@ bool CAxTIF3View::PrintNextPage() {
 					int(bmHeight / (float)yDpi * dy)
 				)
 			);
-		p->Draw(printer, rcDraw);
+		p->Draw2(printer, rcDraw);
 		printer.EndPage();
 	}
 
