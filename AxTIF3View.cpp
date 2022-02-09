@@ -8,7 +8,6 @@
 #include "AxTIF3View.h"
 #include "RUt.h"
 #include "PaperSizeUtil.h"
-#include "PaperSizeLite.h"
 #include "FitRect3.h"
 
 #ifdef _DEBUG
@@ -51,6 +50,7 @@ BEGIN_MESSAGE_MAP(CAxTIF3View, CView)
 	ON_COMMAND_RANGE(IDC_P6, IDC_MOVE, OnSelCmd)
 	ON_UPDATE_COMMAND_UI_RANGE(IDC_MAG, IDC_MOVE, OnUpdateSelCmd)
 	ON_COMMAND(IDC_PRINT, OnFilePrint)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CAxTIF3View コンストラクション/デストラクション
@@ -1194,6 +1194,7 @@ float CAxTIF3View::Getzf() const {
 }
 
 void CAxTIF3View::PostNcDestroy() {
+	m_printState.reset(nullptr);
 	return;
 	//	CView::PostNcDestroy();
 }
@@ -1236,13 +1237,22 @@ void CAxTIF3View::OnUpdate(CView* /*pSender*/, LPARAM lHint, CObject* /*pHint*/)
 void CAxTIF3View::RotPic(int a) {
 	CxImage *p = GetPic();
 	if (p != NULL) {
+		int n = 0;
 		while (a < 0) {
 			p->RotateLeft();
 			a++;
+			n++;
 		}
 		while (a > 0) {
 			p->RotateRight();
 			a--;
+			n++;
+		}
+		if (n & 1) {
+			long x = p->GetXDPI();
+			long y = p->GetYDPI();
+			p->SetXDPI(y);
+			p->SetYDPI(x);
 		}
 
 		SetFit(FitWH);
@@ -1278,6 +1288,7 @@ public:
 
 	CPrintOptsDlg(CWnd *pParent = NULL)
 		: CDialog(IDD, pParent)
+		, m_bUseMargin(false), m_bFixPaperSize(false), m_bDontZoom(false)
 	{
 	}
 
@@ -1427,80 +1438,152 @@ void CAxTIF3View::OnFilePrint() {
 
 	dlg.opts.SaveToReg();
 
+	m_printState.reset(new CAxTIF3View::PrintState());
+
 	DEVMODE *devmode = dlg.GetDevMode();
 
-	CDC printer;
+	m_printState.get()->devmode.SetSize(devmode->dmSize + devmode->dmDriverExtra);
+	memcpy(m_printState.get()->devmode.GetData(), devmode, m_printState.get()->devmode.GetSize());
+
+	m_printState.get()->pd = dlg.m_pd;
+
+	m_printState.get()->bFixPaperSize = dlg.opts.GetPaperSizeAnd(
+		m_printState.get()->dmPaperSize,
+		m_printState.get()->dmOrientation
+	);
+
+	m_printState.get()->bUseMargin = dlg.opts.m_bUseMargin;
+	m_printState.get()->bDontZoom = dlg.opts.m_bDontZoom;
+
+	CDC &printer = m_printState.get()->printer;
 	printer.m_bPrinting = true;
 	printer.Attach(dlg.CreatePrinterDC());
 
-	DOCINFO di;
-	ZeroMemory(&di, sizeof(di));
-	di.cbSize = sizeof(di);
+	SetTimer(1000, 100, NULL);
 
-	PaperSizeLite defaultPaperSize;
-	defaultPaperSize.CopyFrom(*devmode);
+	m_dlgPrint.DoModal();
+}
 
-	devmode->dmFields |= DM_PAPERSIZE | DM_ORIENTATION;
-
-	printer.StartDoc(&di);
-	for (int iPage = dlg.m_pd.nFromPage; iPage <= dlg.m_pd.nToPage; iPage++) {
-		CxImage *p = GetPic(iPage - 1);
-		if (p != NULL) {
-			DWORD bmWidth = p->GetWidth();
-			long xDpi = p->GetXDPI();
-			DWORD bmHeight = p->GetHeight();
-			long yDpi = p->GetYDPI();
-			double mmWidth = bmWidth / (double)xDpi * 25.4;
-			double mmHeight = bmHeight / (double)yDpi * 25.4;
-
-			int dx = printer.GetDeviceCaps(LOGPIXELSX);
-			int dy = printer.GetDeviceCaps(LOGPIXELSY);
-
-			PaperSizeLite guessed;
-			if (dlg.opts.m_bFixPaperSize && dlg.opts.GetPaperSizeAnd(devmode->dmPaperSize, devmode->dmOrientation)) {
-				devmode->dmOrientation = (mmWidth < mmHeight) ? DMORIENT_PORTRAIT : DMORIENT_LANDSCAPE;
+void CAxTIF3View::OnTimer(UINT_PTR nIDEvent) {
+	if (nIDEvent == 1000) {
+		KillTimer(nIDEvent);
+		if (m_dlgPrint.GetSafeHwnd() != NULL) {
+			if ((bool)m_printState) {
+				m_dlgPrint.m_strPrintPos.Format(_T("%d / %d")
+					, (std::max)(0 + m_printState.get()->pd.nMinPage, m_printState.get()->nextPage)
+					, 0 + m_printState.get()->pd.nMaxPage
+				);
 			}
-			else if (PaperSizeUtil::Guess(mmWidth, mmHeight, guessed)) {
-				guessed.CopyTo(*devmode);
+			m_dlgPrint.UpdateData(false);
+
+			if (PrintNextPage()) {
+				SetTimer(1000, 100, NULL);
 			}
 			else {
-				defaultPaperSize.CopyTo(*devmode);
+				m_dlgPrint.EndDialog(0);
+				m_printState.reset(nullptr);
 			}
-
-			printer.ResetDC(devmode);
-			printer.StartPage();
-			CRect rc;
-			int ox = printer.GetDeviceCaps(PHYSICALOFFSETX);
-			int oy = printer.GetDeviceCaps(PHYSICALOFFSETY);
-			int cx = printer.GetDeviceCaps(PHYSICALWIDTH);
-			int cy = printer.GetDeviceCaps(PHYSICALHEIGHT);
-			if (dlg.opts.m_bUseMargin) {
-				cx -= ox + ox;
-				cy -= oy + oy;
-				ox = 0;
-				oy = 0;
-			}
-			CRect rcPaper(-ox, -oy, cx, cy);
-			CRect rcDraw = dlg.opts.m_bDontZoom
-				? FitRect3::Fit(
-					rcPaper,
-					CSize(
-						int(bmWidth / (float)xDpi * dx),
-						int(bmHeight / (float)yDpi * dy)
-					),
-					-1,
-					-1
-				)
-				: FitRect3::ZoomFit(
-					rcPaper,
-					CSize(
-						int(bmWidth / (float)xDpi * dx),
-						int(bmHeight / (float)yDpi * dy)
-					)
-				);
-			p->Draw(printer, rcDraw);
-			printer.EndPage();
+		}
+		else {
+			m_printState.reset(nullptr);
 		}
 	}
-	printer.EndDoc();
+}
+
+bool CAxTIF3View::PrintNextPage() {
+	if (!(bool)m_printState) {
+		return false;
+	}
+
+	DOCINFO &di = m_printState.get()->di;
+	DEVMODE *devmode = reinterpret_cast<DEVMODE *>(m_printState.get()->devmode.GetData());
+	PaperSizeLite &defaultPaperSize = m_printState.get()->defaultPaperSize;
+	CDC &printer = m_printState.get()->printer;
+	PRINTDLG &pd = m_printState.get()->pd;
+
+	if (m_printState.get()->nextPage == -1) {
+		ZeroMemory(&di, sizeof(di));
+		di.cbSize = sizeof(di);
+
+		defaultPaperSize.CopyFrom(*devmode);
+
+		devmode->dmFields |= DM_PAPERSIZE | DM_ORIENTATION;
+
+		m_printState.get()->printer.StartDoc(&di);
+		m_printState.get()->startDocActive = true;
+
+		m_printState.get()->nextPage = pd.nFromPage;
+	}
+
+	if (m_printState.get()->nextPage > pd.nToPage) {
+		printer.EndDoc();
+		m_printState.get()->startDocActive = false;
+		return false;
+	}
+
+	int iPage = m_printState.get()->nextPage;
+
+	CxImage *p = GetPic(iPage - 1);
+	if (p != NULL) {
+		DWORD bmWidth = p->GetWidth();
+		long xDpi = p->GetXDPI();
+		DWORD bmHeight = p->GetHeight();
+		long yDpi = p->GetYDPI();
+		float mmWidth = bmWidth / (float)xDpi * 25.4f;
+		float mmHeight = bmHeight / (float)yDpi * 25.4f;
+
+		int dx = printer.GetDeviceCaps(LOGPIXELSX);
+		int dy = printer.GetDeviceCaps(LOGPIXELSY);
+
+		PaperSizeLite guessed;
+		if (m_printState.get()->bFixPaperSize) {
+			devmode->dmPaperSize = m_printState.get()->dmPaperSize;
+			devmode->dmOrientation = m_printState.get()->dmOrientation;
+
+			devmode->dmOrientation = (mmWidth < mmHeight) ? DMORIENT_PORTRAIT : DMORIENT_LANDSCAPE;
+		}
+		else if (PaperSizeUtil::Guess(mmWidth, mmHeight, guessed)) {
+			guessed.CopyTo(*devmode);
+		}
+		else {
+			defaultPaperSize.CopyTo(*devmode);
+		}
+
+		printer.ResetDC(devmode);
+		printer.StartPage();
+		CRect rc;
+		int ox = printer.GetDeviceCaps(PHYSICALOFFSETX);
+		int oy = printer.GetDeviceCaps(PHYSICALOFFSETY);
+		int cx = printer.GetDeviceCaps(PHYSICALWIDTH);
+		int cy = printer.GetDeviceCaps(PHYSICALHEIGHT);
+		if (m_printState.get()->bUseMargin) {
+			cx -= ox + ox;
+			cy -= oy + oy;
+			ox = 0;
+			oy = 0;
+		}
+		CRect rcPaper(-ox, -oy, cx, cy);
+		CRect rcDraw = m_printState.get()->bDontZoom
+			? FitRect3::Fit(
+				rcPaper,
+				CSize(
+					int(bmWidth / (float)xDpi * dx),
+					int(bmHeight / (float)yDpi * dy)
+				),
+				-1,
+				-1
+			)
+			: FitRect3::ZoomFit(
+				rcPaper,
+				CSize(
+					int(bmWidth / (float)xDpi * dx),
+					int(bmHeight / (float)yDpi * dy)
+				)
+			);
+		p->Draw(printer, rcDraw);
+		printer.EndPage();
+	}
+
+	m_printState.get()->nextPage++;
+	return true;
 }

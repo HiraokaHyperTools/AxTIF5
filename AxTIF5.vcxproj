@@ -14,7 +14,6 @@
     <ProjectGuid>{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}</ProjectGuid>
     <RootNamespace>AxTIF5</RootNamespace>
     <Keyword>MFCActiveXProj</Keyword>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -69,12 +68,10 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -102,11 +99,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -139,6 +134,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PrintingNowDialog.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -163,6 +159,7 @@
     <ClInclude Include="InnerFrame.h" />
     <ClInclude Include="PaperSizeLite.h" />
     <ClInclude Include="PaperSizeUtil.h" />
+    <ClInclude Include="PrintingNowDialog.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RUt.h" />
     <ClInclude Include="SrvrItem.h" />

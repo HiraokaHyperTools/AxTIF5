@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include <memory>
+#include "PaperSizeLite.h"
+#include "PrintingNowDialog.h"
+
 class CAxTIF3Doc;
 
 class CAxTIF3View : public CView
@@ -34,6 +38,36 @@ public:
 #endif
 
 protected:
+	class PrintState {
+	public:
+		PrintState() {
+			nextPage = -1;
+			startDocActive = false;
+		}
+		virtual ~PrintState() {
+			if (startDocActive) {
+				printer.AbortDoc();
+			}
+		}
+
+		int nextPage;
+		CByteArray devmode;
+		CDC printer;
+		DOCINFO di;
+		PaperSizeLite defaultPaperSize;
+		PRINTDLG pd;
+
+		bool startDocActive;
+		bool bFixPaperSize;
+		short dmOrientation;
+		short dmPaperSize;
+		bool bUseMargin;
+		bool bDontZoom;
+	};
+	std::unique_ptr<PrintState> m_printState;
+	CPrintingNowDialog m_dlgPrint;
+
+	bool PrintNextPage();
 
 // 生成された、メッセージ割り当て関数
 protected:
@@ -193,6 +227,7 @@ public:
 	afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
 	afx_msg void OnSelCmd(UINT nID);
 	afx_msg void OnUpdateSelCmd(CCmdUI *pUI);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 protected:
 	virtual void PostNcDestroy();
 	virtual void OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/);

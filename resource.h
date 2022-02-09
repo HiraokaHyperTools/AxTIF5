@@ -32,12 +32,14 @@
 #define IDB_ROTR                        211
 #define IDC_SELECT_PAPERSIZE            211
 #define IDB_ROTL                        212
-#define IDC_FIX_PAPERSIZE2              212
 #define IDC_DONT_ZOOM                   212
+#define IDC_PROGRESS                    212
+#define IDC_PRINT_POS                   212
 #define IDB_FIRST                       213
 #define IDB_LAST                        214
 #define IDB_BITMAP1                     216
 #define IDB_PRT                         216
+#define IDD_PRINTING                    220
 #define IDC_P6                          987
 #define IDC_P12                         988
 #define IDC_P25                         989
@@ -57,9 +59,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        220
+#define _APS_NEXT_RESOURCE_VALUE        222
 #define _APS_NEXT_COMMAND_VALUE         1101
-#define _APS_NEXT_CONTROL_VALUE         212
-#define _APS_NEXT_SYMED_VALUE           101
+#define _APS_NEXT_CONTROL_VALUE         213
+#define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif
