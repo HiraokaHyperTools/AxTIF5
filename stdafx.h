@@ -64,3 +64,5 @@
 #include <afxwin.h>
 
 #include <urlmon.h>
+#include <memory>
+#include <afxwin.h>

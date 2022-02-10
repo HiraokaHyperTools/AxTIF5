@@ -42,6 +42,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="PrintingNowDialog.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AxTIF5.def">
@@ -89,6 +92,21 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PaperSizeUtil.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PaperSizeLite.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="FitRect3.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintingNowDialog.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintOpts.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -145,6 +163,15 @@
       <Filter>リソース ファイル</Filter>
     </Image>
     <Image Include="res\zoomval.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\first.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\last.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="res\prt.bmp">
       <Filter>リソース ファイル</Filter>
     </Image>
   </ItemGroup>

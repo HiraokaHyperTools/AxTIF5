@@ -14,12 +14,11 @@
     <ProjectGuid>{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}</ProjectGuid>
     <RootNamespace>AxTIF5</RootNamespace>
     <Keyword>MFCActiveXProj</Keyword>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
     <CharacterSet>MultiByte</CharacterSet>
@@ -27,7 +26,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
     <CharacterSet>MultiByte</CharacterSet>
@@ -63,18 +62,15 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
       <TypeLibraryName>$(IntDir)AxTIF5.tlb</TypeLibraryName>
       <HeaderFileName>$(ProjectName)idl.h</HeaderFileName>
-      <ValidateAllParameters>false</ValidateAllParameters>
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -82,7 +78,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <RegisterOutput>true</RegisterOutput>
+      <RegisterOutput>false</RegisterOutput>
       <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
@@ -97,16 +93,13 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
       <TypeLibraryName>$(IntDir)AxTIF5.tlb</TypeLibraryName>
       <HeaderFileName>$(ProjectName)idl.h</HeaderFileName>
-      <ValidateAllParameters>false</ValidateAllParameters>
     </Midl>
     <ClCompile>
       <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -114,7 +107,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <RegisterOutput>true</RegisterOutput>
+      <RegisterOutput>false</RegisterOutput>
       <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
@@ -139,6 +132,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PrintingNowDialog.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -159,7 +153,12 @@
     <ClInclude Include="AxTIF5.h" />
     <ClInclude Include="AxTIF5Ctrl.h" />
     <ClInclude Include="AxTIF5PropPage.h" />
+    <ClInclude Include="FitRect3.h" />
     <ClInclude Include="InnerFrame.h" />
+    <ClInclude Include="PaperSizeLite.h" />
+    <ClInclude Include="PaperSizeUtil.h" />
+    <ClInclude Include="PrintingNowDialog.h" />
+    <ClInclude Include="PrintOpts.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RUt.h" />
     <ClInclude Include="SrvrItem.h" />
@@ -170,15 +169,18 @@
     <Image Include="AxTIF5Ctrl.bmp" />
     <Image Include="res\about.bmp" />
     <Image Include="res\ddown.bmp" />
+    <Image Include="res\first.bmp" />
     <Image Include="res\fitw.bmp" />
     <Image Include="res\fitwh.bmp" />
     <Image Include="res\gear.bmp" />
+    <Image Include="res\last.bmp" />
     <Image Include="res\mag.bmp" />
     <Image Include="res\magbtn.bmp" />
     <Image Include="res\move.bmp" />
     <Image Include="res\movebtn.bmp" />
     <Image Include="res\next.bmp" />
     <Image Include="res\prev.bmp" />
+    <Image Include="res\prt.bmp" />
     <Image Include="res\rotl.bmp" />
     <Image Include="res\rotr.bmp" />
     <Image Include="res\trick.bmp" />
