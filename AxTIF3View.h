@@ -7,6 +7,7 @@
 #include <memory>
 #include "PaperSizeLite.h"
 #include "PrintingNowDialog.h"
+#include "PrintOpts.h"
 
 class CAxTIF3Doc;
 
@@ -40,29 +41,49 @@ public:
 protected:
 	class PrintState {
 	public:
-		PrintState() {
-			nextPage = -1;
-			startDocActive = false;
+		PrintState()
+			: defaultPaperSize()
+			, di()
+			, indexTarget(0)
+			, startDocActive(false)
+			, opts()
+		{
 		}
+
 		virtual ~PrintState() {
 			if (startDocActive) {
 				printer.AbortDoc();
 			}
 		}
 
-		int nextPage;
 		CByteArray devmode;
 		CDC printer;
 		DOCINFO di;
 		PaperSizeLite defaultPaperSize;
-		PRINTDLG pd;
+		int indexTarget;
+		CUIntArray targetPages; // page 1~n
+
+		bool isFirstPage() {
+			return indexTarget == 0;
+		}
+		bool isPrintingDone() {
+			return indexTarget >= targetPages.GetSize();
+		}
+		int getTargetPage() {
+			return targetPages.GetAt(indexTarget);
+		}
+		void moveToNextPage() {
+			indexTarget++;
+		}
+		int getCurPage() {
+			return 1 + indexTarget;
+		}
+		int getMaxPage() {
+			return targetPages.GetSize();
+		}
 
 		bool startDocActive;
-		bool bFixPaperSize;
-		short dmOrientation;
-		short dmPaperSize;
-		bool bUseMargin;
-		bool bDontZoom;
+		PrintOpts opts;
 	};
 	std::unique_ptr<PrintState> m_printState;
 	CPrintingNowDialog m_dlgPrint;
@@ -212,7 +233,7 @@ public:
 	}
 
 	float tp2z(int t) const {
-		return pow(2, t/30.0f) * 0.0625f;
+		return (float)(pow(2, t/30.0f) * 0.0625f);
 	}
 
 	void RotPic(int a);
