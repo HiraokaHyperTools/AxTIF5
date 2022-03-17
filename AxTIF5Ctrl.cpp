@@ -385,6 +385,7 @@ void CAxTIF5Ctrl::LoadFromMoniker(LPBC pibc, LPMONIKER pimkDL) {
 
 				CArchive ar(&fIn, CArchive::load);
 
+				document->SetTitle(m_title);
 				document->Serialize(ar);
 				document->UpdateAllViews(NULL);
 			}

@@ -16,21 +16,21 @@ class CAxTIF3View : public CView
 protected: // シリアル化からのみ作成します。
 	DECLARE_DYNAMIC(CAxTIF3View)
 
-// 属性
+	// 属性
 public:
 	CAxTIF3View();
 	CAxTIF3Doc* GetDocument() const;
 
-// 操作
+	// 操作
 public:
 
-// オーバーライド
+	// オーバーライド
 public:
 	virtual void OnDraw(CDC* pDC);  // このビューを描画するためにオーバーライドされます。
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 
-// 実装
+	// 実装
 public:
 	virtual ~CAxTIF3View();
 #ifdef _DEBUG
@@ -39,6 +39,56 @@ public:
 #endif
 
 protected:
+	class TargetPages {
+		CArray<PRINTPAGERANGE> ranges;
+	public:
+		void AddRanges(LPPRINTPAGERANGE items, int count) {
+			ASSERT(items != nullptr);
+			for (int x = 0; x < count; x++) {
+				ranges.Add(items[x]);
+			}
+		}
+
+		void AddPages(int from, int to) {
+			PRINTPAGERANGE range = { from, to };
+			ranges.Add(range);
+		}
+
+		int GetSize() const {
+			int size = 0;
+			for (INT_PTR y = 0; y < ranges.GetSize(); y++) {
+				const PRINTPAGERANGE& range = ranges[y];
+				if (range.nFromPage <= range.nToPage) {
+					size += range.nToPage - range.nFromPage + 1;
+				}
+				else {
+					size += range.nFromPage - range.nToPage + 1;
+				}
+			}
+			return size;
+		}
+
+		int GetAt(int index) const {
+			for (INT_PTR y = 0; y < ranges.GetSize(); y++) {
+				DWORD from = ranges[y].nFromPage;
+				DWORD to = ranges[y].nToPage;
+				bool advance = from < to;
+				while (true) {
+					if (index <= 0) {
+						return from;
+					}
+					index--;
+					if (from == to) {
+						break;
+					}
+					from += (advance ? 1 : -1);
+				}
+			}
+			ASSERT(false); // out of range
+			return -1;
+		}
+	};
+
 	class PrintState {
 	public:
 		PrintState()
@@ -61,7 +111,7 @@ protected:
 		DOCINFO di;
 		PaperSizeLite defaultPaperSize;
 		int indexTarget;
-		CUIntArray targetPages; // page 1~n
+		TargetPages targetPages; // page 1~n
 
 		bool isFirstPage() {
 			return indexTarget == 0;
@@ -90,7 +140,7 @@ protected:
 
 	bool PrintNextPage();
 
-// 生成された、メッセージ割り当て関数
+	// 生成された、メッセージ割り当て関数
 protected:
 	afx_msg void OnFilePrint();
 	DECLARE_MESSAGE_MAP()
@@ -103,11 +153,11 @@ public:
 	CRect m_rcPaint, m_rcGlass, m_rcMove, m_rcGear, m_rcGearOn, m_rcFirst, m_rcPrev, m_rcNext, m_rcLast,
 		m_rcDisp, m_rcPrt, m_rcAbout, m_rcFitWH, m_rcFitW, m_rcRotl, m_rcRotr;
 	CRect m_rcMMSel, m_rcZoomVal;
-	CxImage *getPic(int frame = -1) const;
-	CxImage *GetPic(int frame = -1) {
+	CxImage* getPic(int frame = -1) const;
+	CxImage* GetPic(int frame = -1) {
 		return getPic(frame);
 	}
-	const CxImage *GetPic(int frame = -1) const {
+	const CxImage* GetPic(int frame = -1) const {
 		return getPic(frame);
 	}
 	float m_fZoom;
@@ -150,33 +200,33 @@ public:
 	class Fitrect {
 	public:
 		static CRect Fit(CRect rcMax, CSize rcBox) {
-            if (rcMax.Height() == 0 || rcBox.cy == 0)
-                return rcMax;
-            float frMax = rcMax.Width() / (float)rcMax.Height();
-            float frBox = rcBox.cx / (float)rcBox.cy;
-            float centerx = ((float)rcMax.left + rcMax.right) / 2;
+			if (rcMax.Height() == 0 || rcBox.cy == 0)
+				return rcMax;
+			float frMax = rcMax.Width() / (float)rcMax.Height();
+			float frBox = rcBox.cx / (float)rcBox.cy;
+			float centerx = ((float)rcMax.left + rcMax.right) / 2;
 			float centery = ((float)rcMax.top + rcMax.bottom) / 2;
-            if (frMax >= frBox) {
-                // 縦長
-                float v = float(rcBox.cx) * rcMax.Height() / rcBox.cy / 2;
-                return CRect(
-                    int(centerx - v),
-                    int(rcMax.top),
-                    int(centerx + v),
-                    int(rcMax.bottom)
-                    );
-            }
-            else {
-                // 横長
-                float v = float(rcBox.cy) * rcMax.Width() / rcBox.cx / 2;
-                return CRect(
-                    int(rcMax.left),
-                    int(centery - v),
-                    int(rcMax.right),
-                    int(centery + v)
-                    );
-            }
-        }
+			if (frMax >= frBox) {
+				// 縦長
+				float v = float(rcBox.cx) * rcMax.Height() / rcBox.cy / 2;
+				return CRect(
+					int(centerx - v),
+					int(rcMax.top),
+					int(centerx + v),
+					int(rcMax.bottom)
+				);
+			}
+			else {
+				// 横長
+				float v = float(rcBox.cy) * rcMax.Width() / rcBox.cx / 2;
+				return CRect(
+					int(rcMax.left),
+					int(centery - v),
+					int(rcMax.right),
+					int(centery + v)
+				);
+			}
+		}
 	};
 	CSize GetZoomedSize();
 	void SetFit(FitMode fit) {
@@ -184,14 +234,14 @@ public:
 		InvalidateRect(m_rcFitW);
 		InvalidateRect(m_rcFitWH);
 
-		InvalidateRect(m_rcGear,false);
+		InvalidateRect(m_rcGear, false);
 	}
 	float Getzf() const;
 	void Setzf(float zf) {
 		m_fZoom = zf;
 		SetFit(FitNo);
-		InvalidateRect(m_rcGear,false);
-		InvalidateRect(m_rcZoomVal,false);
+		InvalidateRect(m_rcGear, false);
+		InvalidateRect(m_rcZoomVal, false);
 	}
 	int GetTrickPos() {
 		int v = z2tp(Getzf());
@@ -212,7 +262,7 @@ public:
 		if (cy < m_rcPaint.Height()) {
 			yp = (m_rcPaint.Height() - cy) / 2;
 		}
-		return CRect(xp, yp, xp +cx, yp +cy);
+		return CRect(xp, yp, xp + cx, yp + cy);
 	}
 	CPoint m_ptClip;
 
@@ -233,7 +283,7 @@ public:
 	}
 
 	float tp2z(int t) const {
-		return (float)(pow(2, t/30.0f) * 0.0625f);
+		return (float)(pow(2, t / 30.0f) * 0.0625f);
 	}
 
 	void RotPic(int a);
@@ -247,7 +297,7 @@ public:
 	afx_msg LRESULT OnMouseHWheel(WPARAM, LPARAM);
 	afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
 	afx_msg void OnSelCmd(UINT nID);
-	afx_msg void OnUpdateSelCmd(CCmdUI *pUI);
+	afx_msg void OnUpdateSelCmd(CCmdUI* pUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 protected:
 	virtual void PostNcDestroy();
@@ -256,6 +306,8 @@ protected:
 
 #ifndef _DEBUG  // AxTIF3View.cpp のデバッグ バージョン
 inline CAxTIF3Doc* CAxTIF3View::GetDocument() const
-   { return reinterpret_cast<CAxTIF3Doc*>(m_pDocument); }
+{
+	return reinterpret_cast<CAxTIF3Doc*>(m_pDocument);
+}
 #endif
 
