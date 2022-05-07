@@ -5,8 +5,8 @@
 #include "AxTIF5Ctrl.h"
 #include "AxTIF5PropPage.h"
 
-#include "AxTIF3Doc.h"
-#include "AxTIF3View.h"
+#include "TIFPart/TIFFDoc.h"
+#include "TIFPart/TIFFView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -244,8 +244,8 @@ void CAxTIF5Ctrl::DoPropExchange(CPropExchange* pPX)
 	COleControl::DoPropExchange(pPX);
 
 	PX_String(pPX, _T("src"), m_src);
-	PX_Long(pPX, _T("ddcompat"), m_frame.m_vw.m_ddcompat);
-	PX_Long(pPX, _T("slowzoom"), m_frame.m_vw.m_slowzoom);
+	PX_Long(pPX, _T("ddcompat"), m_frame.m_view.m_ddcompat);
+	PX_Long(pPX, _T("slowzoom"), m_frame.m_view.m_slowzoom);
 
 	HRESULT hr;
 
@@ -323,11 +323,11 @@ int CAxTIF5Ctrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CCreateContext a;
 
-	a.m_pCurrentDoc = STATIC_DOWNCAST(CAxTIF3Doc,RUNTIME_CLASS(CAxTIF3Doc)->CreateObject());
+	a.m_pCurrentDoc = STATIC_DOWNCAST(CTIFFDoc,RUNTIME_CLASS(CTIFFDoc)->CreateObject());
 	a.m_pCurrentFrame = NULL;
 	a.m_pLastView = NULL;
 	a.m_pNewDocTemplate = NULL;
-	a.m_pNewViewClass = RUNTIME_CLASS(CAxTIF3View);
+	a.m_pNewViewClass = RUNTIME_CLASS(CTIFFView);
 
 	m_frame.DestroyWindow();
 
@@ -402,7 +402,7 @@ bool CAxTIF5Ctrl::LoadFromFile(LPCTSTR psz) {
 
 			document->Serialize(ar);
 			document->UpdateAllViews(NULL, UPHINT_LOADED);
-			m_frame.m_vw.Invalidate();
+			m_frame.m_view.Invalidate();
 			return true;
 		}
 	}
@@ -432,6 +432,6 @@ LRESULT CAxTIF5Ctrl::OnIdleUpdateCmdUI(WPARAM wParam, LPARAM) {
 }
 
 void CAxTIF5Ctrl::SetClip(CRect rc) {
-	m_frame.m_vw.m_ptClip = CPoint(-rc.left, -rc.top);
-	m_frame.m_vw.LayoutClient();
+	m_frame.m_view.m_ptClip = CPoint(-rc.left, -rc.top);
+	m_frame.m_view.LayoutClient();
 }

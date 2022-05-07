@@ -1,8 +1,8 @@
 ﻿// PrintingNowDialog.cpp : 実装ファイル
 //
 
-#include "stdafx.h"
-#include "AxTIF5.h"
+#include "pch.h"
+#include "TIFPart.resource.h"
 #include "PrintingNowDialog.h"
 #include "afxdialogex.h"
 

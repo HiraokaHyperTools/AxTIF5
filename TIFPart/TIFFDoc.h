@@ -1,18 +1,20 @@
-﻿// AxTIF3Doc.h : CAxTIF3Doc クラスのインターフェイス
+﻿// AxTIF3Doc.h : CTIFFDoc クラスのインターフェイス
 //
 
 
 #pragma once
 
+#include "TiffHolder.h"
+
 #define UPHINT_LOADED 1
 
 class CAxTIF3SrvrItem;
 
-class CAxTIF3Doc : public CDocument
+class CTIFFDoc : public CDocument
 {
 protected: // シリアル化からのみ作成します。
-	CAxTIF3Doc();
-	DECLARE_DYNCREATE(CAxTIF3Doc)
+	CTIFFDoc();
+	DECLARE_DYNCREATE(CTIFFDoc)
 
 // 属性
 public:
@@ -28,7 +30,7 @@ public:
 
 // 実装
 public:
-	virtual ~CAxTIF3Doc();
+	virtual ~CTIFFDoc();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -41,7 +43,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	CAutoPtrArray<CxImage> m_tifs;
+	std::shared_ptr<CTiffHolder> m_tiff;
 };
-
-

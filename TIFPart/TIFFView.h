@@ -1,4 +1,4 @@
-﻿// AxTIF3View.h : CAxTIF3View クラスのインターフェイス
+﻿// AxTIF3View.h : CTIFFView クラスのインターフェイス
 //
 
 
@@ -9,17 +9,17 @@
 #include "PrintingNowDialog.h"
 #include "PrintOpts.h"
 
-class CAxTIF3Doc;
+class CTIFFDoc;
 
-class CAxTIF3View : public CView
+class CTIFFView : public CView
 {
 protected: // シリアル化からのみ作成します。
-	DECLARE_DYNAMIC(CAxTIF3View)
+	DECLARE_DYNCREATE(CTIFFView)
 
 	// 属性
 public:
-	CAxTIF3View();
-	CAxTIF3Doc* GetDocument() const;
+	CTIFFView();
+	CTIFFDoc* GetDocument() const;
 
 	// 操作
 public:
@@ -32,7 +32,7 @@ protected:
 
 	// 実装
 public:
-	virtual ~CAxTIF3View();
+	virtual ~CTIFFView();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -140,6 +140,18 @@ protected:
 
 	bool PrintNextPage();
 
+	struct CurrentPage {
+		int pageIndex;
+		std::unique_ptr<CxImage> image; // may be null
+
+		CurrentPage() : pageIndex(-1) {
+
+		}
+	};
+	std::unique_ptr<CurrentPage> m_currentPage;
+
+	std::unique_ptr<CxImage> m_printImage;
+
 	// 生成された、メッセージ割り当て関数
 protected:
 	afx_msg void OnFilePrint();
@@ -153,13 +165,9 @@ public:
 	CRect m_rcPaint, m_rcGlass, m_rcMove, m_rcGear, m_rcGearOn, m_rcFirst, m_rcPrev, m_rcNext, m_rcLast,
 		m_rcDisp, m_rcPrt, m_rcAbout, m_rcFitWH, m_rcFitW, m_rcRotl, m_rcRotr;
 	CRect m_rcMMSel, m_rcZoomVal;
-	CxImage* getPic(int frame = -1) const;
-	CxImage* GetPic(int frame = -1) {
-		return getPic(frame);
-	}
-	const CxImage* GetPic(int frame = -1) const {
-		return getPic(frame);
-	}
+	CxImage* GetCurrentPageImage();
+	CxImage* GetPrintImage(int frame);
+
 	float m_fZoom;
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	SCROLLINFO m_siH, m_siV;
@@ -176,8 +184,8 @@ public:
 	void SetzoomR(float zf);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	//int m_trickPos; // (7,7)-(247,7) 0to240.
-	CPoint GetCenterPos() const;
-	CPoint GetAbsPosAt(CPoint pt) const;
+	CPoint GetCenterPos();
+	CPoint GetAbsPosAt(CPoint pt);
 	void SetCenterAt(CPoint pt, CPoint clientpt);
 	int Newyp(int v) const {
 		return max(m_siV.nMin, min(m_siV.nMax - (int)m_siV.nPage + 1, v));
@@ -236,7 +244,7 @@ public:
 
 		InvalidateRect(m_rcGear, false);
 	}
-	float Getzf() const;
+	float Getzf();
 	void Setzf(float zf) {
 		m_fZoom = zf;
 		SetFit(FitNo);
@@ -280,7 +288,7 @@ public:
 		if (f <= 8.0f) return 105;
 		if (f <= 16.0f) return 120;
 #endif
-	}
+}
 
 	float tp2z(int t) const {
 		return (float)(pow(2, t / 30.0f) * 0.0625f);
@@ -305,9 +313,9 @@ protected:
 };
 
 #ifndef _DEBUG  // AxTIF3View.cpp のデバッグ バージョン
-inline CAxTIF3Doc* CAxTIF3View::GetDocument() const
+inline CTIFFDoc* CTIFFView::GetDocument() const
 {
-	return reinterpret_cast<CAxTIF3Doc*>(m_pDocument);
+	return reinterpret_cast<CTIFFDoc*>(m_pDocument);
 }
 #endif
 

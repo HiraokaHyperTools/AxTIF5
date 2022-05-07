@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "InnerFrame.h"
+#include "TIFPart/TIFFInnerFrame.h"
 
 // AxTIF5Ctrl.h : CAxTIF5Ctrl ActiveX コントロール クラスの宣言です。
 
@@ -29,7 +29,7 @@ protected:
 
 	virtual void OnShowToolBars();
 
-	CInnerFrame m_frame;
+	CTIFFInnerFrame m_frame;
 
 	CComPtr<IMoniker> m_pimkDL;
 

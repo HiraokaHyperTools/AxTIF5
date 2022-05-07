@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AxTIF5", "AxTIF5.vcxproj", "{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}"
 	ProjectSection(ProjectDependencies) = postProject
-		{EBC9574A-7F72-4DF0-8185-E4EE564DA3A5} = {EBC9574A-7F72-4DF0-8185-E4EE564DA3A5}
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A} = {5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "cximage600_full\zlib\zlib.vcxproj", "{FE2A3398-6282-47B1-80E9-C1BB97D4F0F4}"
@@ -49,6 +49,16 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp1", "TestApp1\TestApp1.vcxproj", "{57000A8D-9CE2-47AD-A2DD-32CBB64E3150}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5} = {1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TIFPart", "TIFPart\TIFPart.vcxproj", "{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBC9574A-7F72-4DF0-8185-E4EE564DA3A5} = {EBC9574A-7F72-4DF0-8185-E4EE564DA3A5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TIFViewer", "TIFViewer\TIFViewer.vcxproj", "{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A} = {5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}
 	EndProjectSection
 EndProject
 Global
@@ -201,6 +211,38 @@ Global
 		{57000A8D-9CE2-47AD-A2DD-32CBB64E3150}.Unicode Release|Win32.Build.0 = Release|Win32
 		{57000A8D-9CE2-47AD-A2DD-32CBB64E3150}.Unicode Release|x64.ActiveCfg = Release|x64
 		{57000A8D-9CE2-47AD-A2DD-32CBB64E3150}.Unicode Release|x64.Build.0 = Release|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Debug|Win32.Build.0 = Debug|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Debug|x64.ActiveCfg = Debug|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Debug|x64.Build.0 = Debug|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Release|Win32.ActiveCfg = Release|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Release|Win32.Build.0 = Release|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Release|x64.ActiveCfg = Release|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Release|x64.Build.0 = Release|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Debug|Win32.Build.0 = Debug|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Debug|x64.ActiveCfg = Debug|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Debug|x64.Build.0 = Debug|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Release|Win32.ActiveCfg = Release|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Release|Win32.Build.0 = Release|Win32
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Release|x64.ActiveCfg = Release|x64
+		{5E8129B4-CA45-49BE-B6F1-428AD5E4F43A}.Unicode Release|x64.Build.0 = Release|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Debug|Win32.Build.0 = Debug|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Debug|x64.ActiveCfg = Debug|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Debug|x64.Build.0 = Debug|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Release|Win32.ActiveCfg = Release|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Release|Win32.Build.0 = Release|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Release|x64.ActiveCfg = Release|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Release|x64.Build.0 = Release|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Debug|Win32.Build.0 = Debug|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Debug|x64.ActiveCfg = Debug|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Debug|x64.Build.0 = Debug|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Release|Win32.ActiveCfg = Release|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Release|Win32.Build.0 = Release|Win32
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Release|x64.ActiveCfg = Release|x64
+		{52AAA188-1A5E-4CCA-98A5-4094C6DF30C1}.Unicode Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

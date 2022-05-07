@@ -1,19 +1,19 @@
 ﻿#pragma once
 
-#include "AxTIF3View.h"
+#include "TIFFView.h"
 
-// CInnerFrame フレーム
+// CTIFFInnerFrame フレーム
 
-class CInnerFrame : public CFrameWnd
+class CTIFFInnerFrame : public CFrameWnd
 {
-	DECLARE_DYNCREATE(CInnerFrame)
+	DECLARE_DYNCREATE(CTIFFInnerFrame)
 protected:
 
 public:
-	CInnerFrame();           // 動的生成で使用される protected コンストラクタ
-	virtual ~CInnerFrame();
+	CTIFFInnerFrame();           // 動的生成で使用される protected コンストラクタ
+	virtual ~CTIFFInnerFrame();
 
-	CAxTIF3View m_vw;
+	CTIFFView m_view;
 
 protected:
 	DECLARE_MESSAGE_MAP()

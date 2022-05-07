@@ -14,6 +14,7 @@
     <ProjectGuid>{1D15FA1E-9E1B-40D4-B4BD-0C40453537E5}</ProjectGuid>
     <RootNamespace>AxTIF5</RootNamespace>
     <Keyword>MFCActiveXProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -45,14 +46,10 @@
     <_ProjectFileVersion>15.0.27428.2015</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ocx</TargetExt>
   </PropertyGroup>
@@ -79,8 +76,8 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;TIFPart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;./$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -108,8 +105,8 @@
     </ResourceCompile>
     <Link>
       <RegisterOutput>false</RegisterOutput>
-      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;TIFPart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;./$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -120,19 +117,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AboutDlg.cpp" />
-    <ClCompile Include="AxTIF3Doc.cpp" />
-    <ClCompile Include="AxTIF3View.cpp" />
     <ClCompile Include="AxTIF5.cpp" />
     <ClCompile Include="AxTIF5Ctrl.cpp" />
     <ClCompile Include="AxTIF5PropPage.cpp" />
-    <ClCompile Include="InnerFrame.cpp" />
     <ClCompile Include="np.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PrintingNowDialog.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -148,17 +141,9 @@
   <ItemGroup>
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="AxTIF3.h" />
-    <ClInclude Include="AxTIF3Doc.h" />
-    <ClInclude Include="AxTIF3View.h" />
     <ClInclude Include="AxTIF5.h" />
     <ClInclude Include="AxTIF5Ctrl.h" />
     <ClInclude Include="AxTIF5PropPage.h" />
-    <ClInclude Include="FitRect3.h" />
-    <ClInclude Include="InnerFrame.h" />
-    <ClInclude Include="PaperSizeLite.h" />
-    <ClInclude Include="PaperSizeUtil.h" />
-    <ClInclude Include="PrintingNowDialog.h" />
-    <ClInclude Include="PrintOpts.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RUt.h" />
     <ClInclude Include="SrvrItem.h" />
@@ -189,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AxTIF5.rc" />
+    <ResourceCompile Include="TIFPart\TIFPart.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

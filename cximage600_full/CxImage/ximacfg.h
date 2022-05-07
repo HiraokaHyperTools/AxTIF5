@@ -3,11 +3,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CxImage supported features
-#define CXIMAGE_SUPPORT_ALPHA          1
-#define CXIMAGE_SUPPORT_SELECTION      1
-#define CXIMAGE_SUPPORT_TRANSFORMATION 1
-#define CXIMAGE_SUPPORT_DSP            1
-#define CXIMAGE_SUPPORT_LAYERS		   1
+#define CXIMAGE_SUPPORT_ALPHA          0
+#define CXIMAGE_SUPPORT_SELECTION      0
+#define CXIMAGE_SUPPORT_TRANSFORMATION 0
+#define CXIMAGE_SUPPORT_DSP            0
+#define CXIMAGE_SUPPORT_LAYERS		   0
 #define CXIMAGE_SUPPORT_INTERPOLATION  1
 
 #define CXIMAGE_SUPPORT_DECODE	1

@@ -1,0 +1,147 @@
+// Microsoft Visual C++ で生成されたリソース スクリプトです。
+//
+#include "TIFPart.resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE 2 リソースから生成されました。
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 (日本) リソース
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE 17, 1
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource1.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 日本語 (日本) リソース
+/////////////////////////////////////////////////////////////////////////////
+
+IDD_PRINTING DIALOGEX 0, 0, 189, 56
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "印刷中"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "キャンセル",IDCANCEL,132,35,50,14
+    LTEXT           "印刷しています。完了するまでお待ちください。",IDC_STATIC,7,7,175,8
+    LTEXT           "...",IDC_PRINT_POS,7,22,175,8
+END
+
+
+IDB_MAG                 BITMAP                  "res\\mag.bmp"
+
+IDB_MOVE                BITMAP                  "res\\move.bmp"
+
+IDB_GEAR                BITMAP                  "res\\gear.bmp"
+
+IDB_TRICK               BITMAP                  "res\\trick.bmp"
+
+IDB_PREV                BITMAP                  "res\\prev.bmp"
+
+IDB_NEXT                BITMAP                  "res\\next.bmp"
+
+IDB_ABOUT               BITMAP                  "res\\about.bmp"
+
+IDB_FITWH               BITMAP                  "res\\fitwh.bmp"
+
+IDB_FITW                BITMAP                  "res\\fitw.bmp"
+
+IDB_MAGBTN              BITMAP                  "res\\magbtn.bmp"
+
+IDB_MOVEBTN             BITMAP                  "res\\movebtn.bmp"
+
+IDB_ZOOMVAL             BITMAP                  "res\\zoomval.bmp"
+
+IDB_ROTR                BITMAP                  "res\\rotr.bmp"
+
+IDB_ROTL                BITMAP                  "res\\rotl.bmp"
+
+IDB_FIRST               BITMAP                  "res\\first.bmp"
+
+IDB_LAST                BITMAP                  "res\\last.bmp"
+
+IDB_PRT                 BITMAP                  "res\\prt.bmp"
+
+
+IDR_MENU_P MENU
+BEGIN
+    POPUP "Zoom factor"
+    BEGIN
+        MENUITEM "6 %",                         IDC_P6
+        MENUITEM "12 %",                        IDC_P12
+        MENUITEM "25 %",                        IDC_P25
+        MENUITEM "50 %",                        IDC_P50
+        MENUITEM "100 %",                       IDC_P100
+        MENUITEM "200 %",                       IDC_P200
+        MENUITEM "400 %",                       IDC_P400
+        MENUITEM "800 %",                       IDC_P800
+        MENUITEM "1600 %",                      IDC_P1600
+    END
+END
+
+
+IDD_PRINT_OPTS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PRINTING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+IDD_PRINT_OPTS DIALOGEX 0, 0, 253, 108
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD | WS_VISIBLE
+FONT 9, "MS UI Gothic", 400, 0, 0x0
+BEGIN
+    GROUPBOX        "詳細",IDC_STATIC,7,7,229,82
+    CONTROL         "センタリングする (オフの場合は、左上に寄せる)",IDC_CENTERING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,25,139,10
+    CONTROL         "ページ余白を無視する。ドキュメントの端が見切れる可能性があります",IDC_IGNORE_MARGIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,45,202,10
+    CONTROL         "ページサイズに合わせて用紙サイズを選択",IDC_AUTO_PAPERSIZE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,65,127,10
+END
+
+STRINGTABLE
+BEGIN
+    IDS_AXTIF5_PRINT_PROP_CAPTION "印刷オプション"
+END
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE 3 リソースから生成されました。
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED でない場合

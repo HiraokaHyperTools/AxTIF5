@@ -1,12 +1,12 @@
-﻿// AxTIF3View.cpp : CAxTIF3View クラスの実装
+﻿// AxTIF3View.cpp : CTIFFView クラスの実装
 //
 
-#include "stdafx.h"
-#include "AxTIF3.h"
+#include "pch.h"
+#include "TIFPart.resource.h"
 
-#include "AxTIF3Doc.h"
-#include "AxTIF3View.h"
-#include "RUt.h"
+#include "TIFFDoc.h"
+#include "TIFFView.h"
+#include "../RUt.h"
 #include "PaperSizeUtil.h"
 #include "FitRect3.h"
 
@@ -24,15 +24,15 @@ const int cxBMLast = 16;
 const int cxBMGear = 254;
 const int cyBar = 24;
 
-// CAxTIF3View
+// CTIFFView
 
-IMPLEMENT_DYNAMIC(CAxTIF3View, CView)
+IMPLEMENT_DYNCREATE(CTIFFView, CView)
 
 #ifndef WM_MOUSEHWHEEL
 #define WM_MOUSEHWHEEL 0x020E
 #endif // WM_MOUSEHWHEEL
 
-BEGIN_MESSAGE_MAP(CAxTIF3View, CView)
+BEGIN_MESSAGE_MAP(CTIFFView, CView)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
 	ON_WM_HSCROLL()
@@ -53,20 +53,20 @@ BEGIN_MESSAGE_MAP(CAxTIF3View, CView)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
-// CAxTIF3View コンストラクション/デストラクション
+// CTIFFView コンストラクション/デストラクション
 
-CAxTIF3View::CAxTIF3View()
+CTIFFView::CTIFFView()
 	: m_ddcompat(0), m_slowzoom(15)
 {
 	RUt::GetInt(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("ddcompat"), reinterpret_cast<DWORD&>(m_ddcompat), 0);
 	RUt::GetInt(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("slowzoom"), reinterpret_cast<DWORD&>(m_slowzoom), 15);
 }
 
-CAxTIF3View::~CAxTIF3View()
+CTIFFView::~CTIFFView()
 {
 }
 
-BOOL CAxTIF3View::PreCreateWindow(CREATESTRUCT& cs)
+BOOL CTIFFView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if (!CView::PreCreateWindow(cs))
 		return false;
@@ -76,7 +76,7 @@ BOOL CAxTIF3View::PreCreateWindow(CREATESTRUCT& cs)
 	return true;
 }
 
-// CAxTIF3View 描画
+// CTIFFView 描画
 
 inline int RUTo4(int v) {
 	return (v + 3) & (~3);
@@ -93,14 +93,14 @@ typedef struct BI256 {
 	RGBQUAD bmiColors[256];
 }	BI256;
 
-void CAxTIF3View::OnDraw(CDC* pDC)
+void CTIFFView::OnDraw(CDC* pDC)
 {
-	CAxTIF3Doc* pDoc = GetDocument();
+	CTIFFDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
 
-	CxImage* p = GetPic();
+	CxImage* p = GetCurrentPageImage();
 	if (p != NULL && pDC->RectVisible(m_rcPaint)) {
 		CSize size = GetZoomedSize();
 		int cx = size.cx;
@@ -240,7 +240,7 @@ void CAxTIF3View::OnDraw(CDC* pDC)
 		else if (fSmallMono && m_slowzoom == 20) {
 			p->Draw(pDC->GetSafeHdc(), xp, yp, cx, cy, m_rcPaint, true);
 		}
-		else if (fSmallMono && m_slowzoom == 15) {
+		else if (m_slowzoom == 15) {
 			int strMode = pDC->SetStretchBltMode(HALFTONE);
 			CPoint pt = pDC->SetBrushOrg(xp, yp);
 
@@ -454,17 +454,28 @@ void CAxTIF3View::OnDraw(CDC* pDC)
 }
 
 
-CxImage* CAxTIF3View::getPic(int frame) const {
-	if (frame < 0)
-		frame = m_iPage;
-	CAxTIF3Doc* pDoc = GetDocument();
-	ASSERT_VALID(pDoc);
-	if (pDoc != NULL) {
-		size_t cx = pDoc->m_tifs.GetCount();
-		if ((size_t)frame < cx)
-			return pDoc->m_tifs[frame];
+CxImage* CTIFFView::GetCurrentPageImage() {
+	if (m_currentPage == NULL || m_currentPage->pageIndex != m_iPage) {
+		m_currentPage.reset(new CurrentPage());
+		m_currentPage->pageIndex = m_iPage;
+
+		CTIFFDoc* pDoc = GetDocument();
+		ASSERT_VALID(pDoc);
+		if (pDoc != NULL && pDoc->m_tiff.get() != NULL && pDoc->m_tiff->NumPages() >= 1) {
+			m_currentPage->image = pDoc->m_tiff->ExtractImage(m_currentPage->pageIndex);
+		}
 	}
-	return NULL;
+
+	return m_currentPage->image.get();
+}
+
+CxImage* CTIFFView::GetPrintImage(int frame) {
+	CTIFFDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (pDoc != NULL && pDoc->m_tiff.get() != NULL) {
+		m_printImage = pDoc->m_tiff->ExtractImage(frame);
+	}
+	return m_printImage.get();
 }
 
 // OLE Server サポート
@@ -474,30 +485,30 @@ CxImage* CAxTIF3View::getPic(int frame) const {
 //  (サーバーではない)が非アクティブ化を引き起こします。
 
 
-// CAxTIF3View 診断
+// CTIFFView 診断
 
 #ifdef _DEBUG
-void CAxTIF3View::AssertValid() const
+void CTIFFView::AssertValid() const
 {
 	CView::AssertValid();
 }
 
-void CAxTIF3View::Dump(CDumpContext& dc) const
+void CTIFFView::Dump(CDumpContext& dc) const
 {
 	CView::Dump(dc);
 }
 
-CAxTIF3Doc* CAxTIF3View::GetDocument() const // デバッグ以外のバージョンはインラインです。
+CTIFFDoc* CTIFFView::GetDocument() const // デバッグ以外のバージョンはインラインです。
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAxTIF3Doc)));
-	return (CAxTIF3Doc*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CTIFFDoc)));
+	return (CTIFFDoc*)m_pDocument;
 }
 #endif //_DEBUG
 
 
-// CAxTIF3View メッセージ ハンドラ
+// CTIFFView メッセージ ハンドラ
 
-int CAxTIF3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int CTIFFView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -544,7 +555,7 @@ int CAxTIF3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-void CAxTIF3View::OnSize(UINT nType, int cx, int cy)
+void CTIFFView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
@@ -552,7 +563,7 @@ void CAxTIF3View::OnSize(UINT nType, int cx, int cy)
 	LayoutClient();
 }
 
-void CAxTIF3View::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void CTIFFView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	if (pScrollBar == &m_sbH) {
 		int oldpos = m_sbH.GetScrollPos();
@@ -583,7 +594,7 @@ void CAxTIF3View::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	CView::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
-void CAxTIF3View::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void CTIFFView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	if (pScrollBar == &m_sbV) {
 		int oldpos = m_sbV.GetScrollPos();
@@ -614,7 +625,7 @@ void CAxTIF3View::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	CView::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
-void CAxTIF3View::OnRButtonDown(UINT nFlags, CPoint point) {
+void CTIFFView::OnRButtonDown(UINT nFlags, CPoint point) {
 	if (GetFocus() == this) {
 		if (m_toolZoom && m_rcPaint.PtInRect(point)) {
 			bool fControl = 0 != (MK_CONTROL & nFlags);
@@ -637,7 +648,7 @@ void CAxTIF3View::OnRButtonDown(UINT nFlags, CPoint point) {
 
 #define SW2(val, A, B) ((val == (A)) ? (B) : (A))
 
-void CAxTIF3View::OnLButtonDown(UINT nFlags, CPoint point) {
+void CTIFFView::OnLButtonDown(UINT nFlags, CPoint point) {
 	if (GetFocus() == this) {
 		if (m_rcGlass.PtInRect(point)) {
 			m_toolZoom = true;
@@ -749,7 +760,7 @@ void CAxTIF3View::OnLButtonDown(UINT nFlags, CPoint point) {
 	CView::OnLButtonDown(nFlags, point);
 }
 
-void CAxTIF3View::SetzoomR(float zf) {
+void CTIFFView::SetzoomR(float zf) {
 	CPoint posat = GetAbsPosAt(m_rcPaint.CenterPoint() + GetScrollOff());
 	Setzf(zf);
 	LayoutClient();
@@ -757,12 +768,12 @@ void CAxTIF3View::SetzoomR(float zf) {
 	InvalidateRect(m_rcPaint, false);
 }
 
-void CAxTIF3View::Zoomat(bool fIn, CPoint mouseat) {
+void CTIFFView::Zoomat(bool fIn, CPoint mouseat) {
 	float zf = Getzf();
 	ZoomatR(fIn ? zf * 2 : zf / 2, mouseat);
 }
 
-void CAxTIF3View::ZoomatR(float zf, CPoint mouseat) {
+void CTIFFView::ZoomatR(float zf, CPoint mouseat) {
 	CPoint clientpt = mouseat;
 	CPoint dispat = GetZoomedDispRect().TopLeft();
 	CPoint posat = GetAbsPosAt(clientpt - dispat);
@@ -772,7 +783,7 @@ void CAxTIF3View::ZoomatR(float zf, CPoint mouseat) {
 	InvalidateRect(m_rcPaint, false);
 }
 
-void CAxTIF3View::Zoomat2(CPoint mouseat) {
+void CTIFFView::Zoomat2(CPoint mouseat) {
 	CPoint clientpt = mouseat;
 	CRect rcDisp = GetZoomedDispRect();
 	CPoint dispat = rcDisp.TopLeft();
@@ -798,7 +809,7 @@ void CAxTIF3View::Zoomat2(CPoint mouseat) {
 	InvalidateRect(m_rcPaint, false);
 }
 
-void CAxTIF3View::LayoutClient() {
+void CTIFFView::LayoutClient() {
 	CRect rcH;
 	m_sbH.GetWindowRect(rcH);
 	CRect rcV;
@@ -994,21 +1005,21 @@ void CAxTIF3View::LayoutClient() {
 	m_sbV.EnableScrollBar((m_siV.nMax <= (int)m_siV.nPage) ? ESB_DISABLE_BOTH : 0);
 }
 
-void CAxTIF3View::OnLButtonDblClk(UINT nFlags, CPoint point)
+void CTIFFView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	CAxTIF3View::OnLButtonDown(nFlags, point);
+	CTIFFView::OnLButtonDown(nFlags, point);
 	//
 	//	CView::OnLButtonDblClk(nFlags, point);
 }
 
-void CAxTIF3View::OnRButtonDblClk(UINT nFlags, CPoint point)
+void CTIFFView::OnRButtonDblClk(UINT nFlags, CPoint point)
 {
-	CAxTIF3View::OnRButtonDown(nFlags, point);
+	CTIFFView::OnRButtonDown(nFlags, point);
 	//
 	//	CView::OnRButtonDblClk(nFlags, point);
 }
 
-CPoint CAxTIF3View::GetCenterPos() const {
+CPoint CTIFFView::GetCenterPos() {
 	CPoint pt = m_rcPaint.CenterPoint();
 	float zf = Getzf();
 	return CPoint(
@@ -1017,7 +1028,7 @@ CPoint CAxTIF3View::GetCenterPos() const {
 	);
 }
 
-CPoint CAxTIF3View::GetAbsPosAt(CPoint pt) const {
+CPoint CTIFFView::GetAbsPosAt(CPoint pt) {
 	float zf = Getzf();
 	return CPoint(
 		(int)(pt.x / zf),
@@ -1025,7 +1036,7 @@ CPoint CAxTIF3View::GetAbsPosAt(CPoint pt) const {
 	);
 }
 
-void CAxTIF3View::SetCenterAt(CPoint pt, CPoint clientpt) {
+void CTIFFView::SetCenterAt(CPoint pt, CPoint clientpt) {
 	float zf = Getzf();
 	{
 		int xp = Newxp((int)(pt.x * zf - m_rcPaint.Width() / 2 + (m_rcPaint.Width() / 2 - clientpt.x)));
@@ -1039,7 +1050,7 @@ void CAxTIF3View::SetCenterAt(CPoint pt, CPoint clientpt) {
 	}
 }
 
-void CAxTIF3View::OnLButtonUp(UINT nFlags, CPoint point)
+void CTIFFView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (m_fDrag) {
 		m_fDrag = false;
@@ -1050,7 +1061,7 @@ void CAxTIF3View::OnLButtonUp(UINT nFlags, CPoint point)
 	CView::OnLButtonUp(nFlags, point);
 }
 
-void CAxTIF3View::OnMouseMove(UINT nFlags, CPoint point)
+void CTIFFView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (m_fDrag && 0 != (nFlags & MK_LBUTTON) && GetCapture() == this) {
 		CPoint pt = m_ptScrollFrm + m_ptBegin - point;
@@ -1072,16 +1083,19 @@ void CAxTIF3View::OnMouseMove(UINT nFlags, CPoint point)
 	CView::OnMouseMove(nFlags, point);
 }
 
-int CAxTIF3View::CntPages() {
-	return static_cast<int>(GetDocument()->m_tifs.GetCount());
+int CTIFFView::CntPages() {
+	if (GetDocument() != NULL && GetDocument()->m_tiff.get() != NULL) {
+		return static_cast<int>(GetDocument()->m_tiff->NumPages());
+	}
+	return 0;
 }
 
-BOOL CAxTIF3View::OnEraseBkgnd(CDC* pDC) {
+BOOL CTIFFView::OnEraseBkgnd(CDC* pDC) {
 	return 1;
 	//	return CView::OnEraseBkgnd(pDC);
 }
 
-BOOL CAxTIF3View::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt) {
+BOOL CTIFFView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt) {
 	{
 		int oldpos = m_sbV.GetScrollPos();
 		int newpos = oldpos;
@@ -1100,7 +1114,7 @@ BOOL CAxTIF3View::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt) {
 }
 
 // http://msdn.microsoft.com/en-us/library/ms645614(VS.85).aspx
-LRESULT CAxTIF3View::OnMouseHWheel(WPARAM wp, LPARAM) {
+LRESULT CTIFFView::OnMouseHWheel(WPARAM wp, LPARAM) {
 	short zDelta = HIWORD(wp);
 	{
 		int oldpos = m_sbH.GetScrollPos();
@@ -1118,12 +1132,12 @@ LRESULT CAxTIF3View::OnMouseHWheel(WPARAM wp, LPARAM) {
 	return 0;
 }
 
-int CAxTIF3View::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message) {
+int CTIFFView::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message) {
 	return CView::OnMouseActivate(pDesktopWnd, nHitTest, message);
 }
 
-CSize CAxTIF3View::GetZoomedSize() {
-	CxImage* p = GetPic();
+CSize CTIFFView::GetZoomedSize() {
+	CxImage* p = GetCurrentPageImage();
 	if (p != NULL) {
 		CSize size = CSize(p->GetWidth(), p->GetHeight());
 		int rx = p->GetXDPI();
@@ -1162,8 +1176,8 @@ CSize CAxTIF3View::GetZoomedSize() {
 	return CSize(0, 0);
 }
 
-float CAxTIF3View::Getzf() const {
-	const CxImage* p = GetPic();
+float CTIFFView::Getzf() {
+	CxImage* p = GetCurrentPageImage();
 	if (p != NULL) {
 		CSize size = CSize(p->GetWidth(), p->GetHeight());
 		switch (m_fit) {
@@ -1193,13 +1207,13 @@ float CAxTIF3View::Getzf() const {
 	return 1;
 }
 
-void CAxTIF3View::PostNcDestroy() {
+void CTIFFView::PostNcDestroy() {
 	m_printState.reset(nullptr);
 	return;
 	//	CView::PostNcDestroy();
 }
 
-void CAxTIF3View::OnSelCmd(UINT nID) {
+void CTIFFView::OnSelCmd(UINT nID) {
 	switch (nID) {
 	case IDC_MAG: m_toolZoom = true; break;
 	case IDC_MOVE: m_toolZoom = false; break;
@@ -1219,23 +1233,24 @@ void CAxTIF3View::OnSelCmd(UINT nID) {
 	InvalidateRect(m_rcMMSel, false);
 }
 
-void CAxTIF3View::OnUpdateSelCmd(CCmdUI* pUI) {
+void CTIFFView::OnUpdateSelCmd(CCmdUI* pUI) {
 	switch (pUI->m_nID) {
 	case IDC_MAG: pUI->SetCheck(m_toolZoom); break;
 	case IDC_MOVE: pUI->SetCheck(!m_toolZoom); break;
 	}
 }
 
-void CAxTIF3View::OnUpdate(CView* /*pSender*/, LPARAM lHint, CObject* /*pHint*/) {
+void CTIFFView::OnUpdate(CView* /*pSender*/, LPARAM lHint, CObject* /*pHint*/) {
 	switch (lHint) {
 	case UPHINT_LOADED:
+		m_currentPage.reset();
 		LayoutClient();
 		break;
 	}
 }
 
-void CAxTIF3View::RotPic(int a) {
-	CxImage* p = GetPic();
+void CTIFFView::RotPic(int a) {
+	CxImage* p = GetCurrentPageImage();
 	if (p != NULL) {
 		int n = 0;
 		while (a < 0) {
@@ -1295,7 +1310,7 @@ END_MESSAGE_MAP()
 
 IMPLEMENT_DYNAMIC(CPrintOptsPage, CPropertyPage);
 
-void CAxTIF3View::OnFilePrint() {
+void CTIFFView::OnFilePrint() {
 	CPrintDialogEx dlg(
 		PD_ALLPAGES | PD_PAGENUMS | PD_USEDEVMODECOPIES | PD_HIDEPRINTTOFILE | PD_NOSELECTION,
 		this
@@ -1327,7 +1342,7 @@ void CAxTIF3View::OnFilePrint() {
 		return;
 	}
 
-	m_printState.reset(new CAxTIF3View::PrintState());
+	m_printState.reset(new CTIFFView::PrintState());
 
 	DEVMODE* devmode = dlg.GetDevMode();
 
@@ -1357,7 +1372,7 @@ void CAxTIF3View::OnFilePrint() {
 	m_dlgPrint.DoModal();
 }
 
-void CAxTIF3View::OnTimer(UINT_PTR nIDEvent) {
+void CTIFFView::OnTimer(UINT_PTR nIDEvent) {
 	if (nIDEvent == 1000) {
 		KillTimer(nIDEvent);
 		if (m_dlgPrint.GetSafeHwnd() != NULL) {
@@ -1383,7 +1398,7 @@ void CAxTIF3View::OnTimer(UINT_PTR nIDEvent) {
 	}
 }
 
-bool CAxTIF3View::PrintNextPage() {
+bool CTIFFView::PrintNextPage() {
 	if (!(bool)m_printState) {
 		return false;
 	}
@@ -1423,7 +1438,7 @@ bool CAxTIF3View::PrintNextPage() {
 
 	int iPage = m_printState.get()->getTargetPage();
 
-	CxImage* p = GetPic(iPage - 1);
+	CxImage* p = GetPrintImage(iPage - 1);
 	if (p != NULL) {
 		DWORD bmWidth = p->GetWidth();
 		long xDpi = p->GetXDPI();
