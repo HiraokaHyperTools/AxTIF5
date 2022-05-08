@@ -13,7 +13,7 @@ IMPLEMENT_DYNCREATE(CTIFFInnerFrame, CFrameWnd)
 
 CTIFFInnerFrame::CTIFFInnerFrame()
 {
-
+	m_view.m_fAllowSelfDelete = false;
 }
 
 CTIFFInnerFrame::~CTIFFInnerFrame()

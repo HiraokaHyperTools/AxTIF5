@@ -296,6 +296,8 @@ public:
 
 	void RotPic(int a);
 
+	bool m_fAllowSelfDelete;
+
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);

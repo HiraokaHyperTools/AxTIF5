@@ -56,7 +56,7 @@ END_MESSAGE_MAP()
 // CTIFFView コンストラクション/デストラクション
 
 CTIFFView::CTIFFView()
-	: m_ddcompat(0), m_slowzoom(15)
+	: m_ddcompat(0), m_slowzoom(15), m_fAllowSelfDelete(true)
 {
 	RUt::GetInt(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("ddcompat"), reinterpret_cast<DWORD&>(m_ddcompat), 0);
 	RUt::GetInt(_T("HIRAOKA HYPERS TOOLS, Inc."), _T("AxTIF5"), _T("slowzoom"), reinterpret_cast<DWORD&>(m_slowzoom), 15);
@@ -1209,8 +1209,11 @@ float CTIFFView::Getzf() {
 
 void CTIFFView::PostNcDestroy() {
 	m_printState.reset(nullptr);
+
+	if (m_fAllowSelfDelete) {
+		CView::PostNcDestroy();
+	}
 	return;
-	//	CView::PostNcDestroy();
 }
 
 void CTIFFView::OnSelCmd(UINT nID) {
