@@ -306,7 +306,7 @@ public:
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg LRESULT OnMouseHWheel(WPARAM, LPARAM);
 	afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
-	afx_msg void OnSelCmd(UINT nID);
+	afx_msg BOOL OnSelCmd(UINT nID);
 	afx_msg void OnUpdateSelCmd(CCmdUI* pUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 protected:

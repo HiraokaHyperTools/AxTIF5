@@ -47,8 +47,19 @@ BEGIN_MESSAGE_MAP(CTIFFView, CView)
 	ON_WM_MOUSEWHEEL()
 	ON_MESSAGE(WM_MOUSEHWHEEL, OnMouseHWheel)
 	ON_WM_MOUSEACTIVATE()
-	ON_COMMAND_RANGE(IDC_P6, IDC_MOVE, OnSelCmd)
-	ON_UPDATE_COMMAND_UI_RANGE(IDC_MAG, IDC_MOVE, OnUpdateSelCmd)
+	ON_COMMAND_EX(IDC_MAG, OnSelCmd)
+	ON_COMMAND_EX(IDC_MOVE, OnSelCmd)
+	ON_COMMAND_EX(IDC_P6, OnSelCmd)
+	ON_COMMAND_EX(IDC_P12, OnSelCmd)
+	ON_COMMAND_EX(IDC_P25, OnSelCmd)
+	ON_COMMAND_EX(IDC_P50, OnSelCmd)
+	ON_COMMAND_EX(IDC_P100, OnSelCmd)
+	ON_COMMAND_EX(IDC_P200, OnSelCmd)
+	ON_COMMAND_EX(IDC_P400, OnSelCmd)
+	ON_COMMAND_EX(IDC_P800, OnSelCmd)
+	ON_COMMAND_EX(IDC_P1600, OnSelCmd)
+	ON_UPDATE_COMMAND_UI(IDC_MAG, OnUpdateSelCmd)
+	ON_UPDATE_COMMAND_UI(IDC_MOVE, OnUpdateSelCmd)
 	ON_COMMAND(IDC_PRINT, OnFilePrint)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
@@ -696,6 +707,7 @@ void CTIFFView::OnLButtonDown(UINT nFlags, CPoint point) {
 		else if (m_rcFirst.PtInRect(point)) {
 			if (m_iPage > 0) {
 				m_iPage = 0;
+				CWaitCursor wc;
 				LayoutClient();
 				InvalidateRect(m_rcPaint, false);
 				InvalidateRect(m_rcDisp, false);
@@ -704,6 +716,7 @@ void CTIFFView::OnLButtonDown(UINT nFlags, CPoint point) {
 		else if (m_rcPrev.PtInRect(point)) {
 			if (m_iPage > 0) {
 				m_iPage--;
+				CWaitCursor wc;
 				LayoutClient();
 				InvalidateRect(m_rcPaint, false);
 				InvalidateRect(m_rcDisp, false);
@@ -712,6 +725,7 @@ void CTIFFView::OnLButtonDown(UINT nFlags, CPoint point) {
 		else if (m_rcNext.PtInRect(point)) {
 			if (m_iPage + 1 < CntPages()) {
 				m_iPage++;
+				CWaitCursor wc;
 				LayoutClient();
 				InvalidateRect(m_rcPaint, false);
 				InvalidateRect(m_rcDisp, false);
@@ -720,6 +734,7 @@ void CTIFFView::OnLButtonDown(UINT nFlags, CPoint point) {
 		else if (m_rcLast.PtInRect(point)) {
 			if (m_iPage + 1 < CntPages()) {
 				m_iPage = CntPages() - 1;
+				CWaitCursor wc;
 				LayoutClient();
 				InvalidateRect(m_rcPaint, false);
 				InvalidateRect(m_rcDisp, false);
@@ -1216,24 +1231,25 @@ void CTIFFView::PostNcDestroy() {
 	return;
 }
 
-void CTIFFView::OnSelCmd(UINT nID) {
+BOOL CTIFFView::OnSelCmd(UINT nID) {
 	switch (nID) {
 	case IDC_MAG: m_toolZoom = true; break;
 	case IDC_MOVE: m_toolZoom = false; break;
 
-	case IDC_P6: SetzoomR(0.06f); return;
-	case IDC_P12: SetzoomR(0.12f); return;
-	case IDC_P25: SetzoomR(0.25f); return;
-	case IDC_P50: SetzoomR(0.5f); return;
-	case IDC_P100: SetzoomR(1); return;
-	case IDC_P200: SetzoomR(2); return;
-	case IDC_P400: SetzoomR(4); return;
-	case IDC_P800: SetzoomR(8); return;
-	case IDC_P1600: SetzoomR(16); return;
+	case IDC_P6: SetzoomR(0.06f); return true;
+	case IDC_P12: SetzoomR(0.12f); return true;
+	case IDC_P25: SetzoomR(0.25f); return true;
+	case IDC_P50: SetzoomR(0.5f); return true;
+	case IDC_P100: SetzoomR(1); return true;
+	case IDC_P200: SetzoomR(2); return true;
+	case IDC_P400: SetzoomR(4); return true;
+	case IDC_P800: SetzoomR(8); return true;
+	case IDC_P1600: SetzoomR(16); return true;
 
-	default: return;
+	default: return false;
 	}
 	InvalidateRect(m_rcMMSel, false);
+	return true;
 }
 
 void CTIFFView::OnUpdateSelCmd(CCmdUI* pUI) {
