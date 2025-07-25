@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64EC">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64EC</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -8,6 +16,14 @@
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64EC">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64EC</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -17,6 +33,14 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|ARM64">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|ARM64EC">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>ARM64EC</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Unicode Debug|Win32">
       <Configuration>Unicode Debug</Configuration>
       <Platform>Win32</Platform>
@@ -24,6 +48,14 @@
     <ProjectConfiguration Include="Unicode Debug|x64">
       <Configuration>Unicode Debug</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|ARM64">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|ARM64EC">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>ARM64EC</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Unicode Release|Win32">
       <Configuration>Unicode Release</Configuration>
@@ -53,6 +85,18 @@
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
@@ -60,6 +104,18 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
@@ -77,6 +133,18 @@
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
@@ -84,6 +152,18 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
@@ -100,11 +180,27 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
@@ -116,6 +212,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
@@ -124,9 +228,23 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>15.0.27428.2015</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">
+    <BuildAsX>true</BuildAsX>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">
+    <BuildAsX>true</BuildAsX>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnabled>false</VcpkgEnabled>
@@ -177,6 +295,52 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -199,6 +363,48 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -265,6 +471,52 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -307,316 +559,606 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\jpeg;..\png;..\zlib;..\mng;..\tiff;..\j2k;..\jasper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="tif_xfile.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximabmp.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximadsp.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaenc.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaexif.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="xImage.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximagif.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximahist.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaico.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximainfo.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaint.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximajas.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximajbg.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximajpg.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximalpha.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximalyr.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximamng.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximapal.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximapcx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximapng.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaraw.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximasel.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximaska.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximatga.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximath.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximatif.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximatran.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximawbmp.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximawmf.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="ximawnd.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="xmemfile.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;_DEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|x64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Release|ARM64EC'">_LIB;JAS_WIN_MSVC_BUILD;WIN32;NDEBUG;_UNICODE;UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

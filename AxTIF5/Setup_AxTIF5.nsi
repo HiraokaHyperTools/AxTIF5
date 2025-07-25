@@ -14,6 +14,7 @@ Unicode true
 
 !define BINDIR_X86 "..\Release"
 !define BINDIR_X64 "..\x64\Release"
+!define BINDIR_ARM64X "..\ARM64EC\Release"
 
 !system 'DefineAsmVer.exe "${BINDIR_X86}\${APP}.ocx" "!define VER ""[SVER]"" " > Appver.tmp'
 !include "Appver.tmp"
@@ -22,6 +23,7 @@ Unicode true
 !system 'MySign \
   "${BINDIR_X86}\${APP}.ocx" \
   "${BINDIR_X64}\${APP}.ocx" \
+  "${BINDIR_ARM64X}\${APP}.ocx" \
 '
 !finalize 'MySign "%1"'
 
@@ -165,6 +167,11 @@ Section "${APP}" ;No components page, name is not important
   ${If} ${IsNativeAMD64}
     SetOutPath "$INSTDIR\x64"
     File "${BINDIR_X64}\AxTIF5.ocx"
+    ExecWait 'regsvr32.exe /s "$OUTDIR\AxTIF5.ocx"' $0
+    DetailPrint "Œ‹‰Ê: $0"
+  ${ElseIf} ${IsNativeARM64}
+    SetOutPath "$INSTDIR\x64"
+    File "${BINDIR_ARM64X}\AxTIF5.ocx"
     ExecWait 'regsvr32.exe /s "$OUTDIR\AxTIF5.ocx"' $0
     DetailPrint "Œ‹‰Ê: $0"
   ${EndIf}
@@ -344,6 +351,7 @@ Section "Uninstall"
   DetailPrint "Œ‹‰Ê: $0"
 
   ${If} ${IsNativeAMD64}
+  ${OrIf} ${IsNativeARM64}
     ExecWait 'regsvr32.exe /s /u "$INSTDIR\x64\AxTIF5.ocx"' $0
     DetailPrint "Œ‹‰Ê: $0"
   ${EndIf}
@@ -364,6 +372,7 @@ Section "Uninstall"
   Delete "$INSTDIR\npzzzaxtif5.dll"
 
   ${If} ${IsNativeAMD64}
+  ${OrIf} ${IsNativeARM64}
     Delete "$INSTDIR\x64\AxTIF5.ocx"
     RMDir  "$INSTDIR\x64"
   ${EndIf}
