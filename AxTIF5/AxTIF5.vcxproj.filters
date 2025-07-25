@@ -35,10 +35,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AxTIF5.def">
+    <None Include="res\Credits.rtf" />
+    <None Include="AxTIF5_x64.def">
       <Filter>ソース ファイル</Filter>
     </None>
-    <None Include="res\Credits.rtf" />
+    <None Include="AxTIF5_x86.def">
+      <Filter>ソース ファイル</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="AxTIF5.idl">
@@ -143,7 +146,7 @@
     <ResourceCompile Include="AxTIF5.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
-    <ResourceCompile Include="TIFPart\TIFPart.rc">
+    <ResourceCompile Include="..\TIFPart\TIFPart.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>

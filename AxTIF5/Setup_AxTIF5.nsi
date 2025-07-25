@@ -12,11 +12,17 @@ Unicode true
 
 !define COM   "HIRAOKA HYPERS TOOLS, Inc."
 
-!system 'DefineAsmVer.exe "RELEASE\${APP}.ocx" "!define VER ""[SVER]"" " > Appver.tmp'
+!define BINDIR_X86 "..\Release"
+!define BINDIR_X64 "..\x64\Release"
+
+!system 'DefineAsmVer.exe "${BINDIR_X86}\${APP}.ocx" "!define VER ""[SVER]"" " > Appver.tmp'
 !include "Appver.tmp"
 !searchreplace APPVER ${VER} "." "_"
 
-!system 'MySign "Release\${APP}.ocx"'
+!system 'MySign \
+  "${BINDIR_X86}\${APP}.ocx" \
+  "${BINDIR_X64}\${APP}.ocx" \
+'
 !finalize 'MySign "%1"'
 
 !define MIME "image/tiff"
@@ -30,6 +36,7 @@ Unicode true
 !define EXT2 ".tiff"
 
 !include "LogicLib.nsh"
+!include "x64.nsh"
 !include "FileFunc.nsh"
 
 ;--------------------------------
@@ -101,6 +108,21 @@ UninstPage instfiles
 
 ;--------------------------------
 
+Var ForAny64
+
+!macro X86_AND_ANY64_BEGIN
+  ${ForEach} $ForAny64 0 1 + 1
+    ${If} $ForAny64 = 0
+    ${OrIf} ${RunningX64}
+!macroend
+
+!macro X86_AND_ANY64_END
+    ${EndIf}
+  ${Next}
+!macroend
+
+;--------------------------------
+
 Section "関連付け削除(アカウント単位の設定)"
   StrCpy $0 0
 Loop:
@@ -135,12 +157,24 @@ Section "${APP}" ;No components page, name is not important
   SetOutPath $INSTDIR
 
   ; Put file there
-  File "release\AxTIF5.ocx"
-  
-  RegDLL "$INSTDIR\AxTIF5.ocx"
-  
+  SetOutPath "$INSTDIR"
+  File "${BINDIR_X86}\AxTIF5.ocx"
+  ExecWait 'regsvr32.exe /s "$OUTDIR\AxTIF5.ocx"' $0
+  DetailPrint "結果: $0"
+
+  ${If} ${IsNativeAMD64}
+    SetOutPath "$INSTDIR\x64"
+    File "${BINDIR_X64}\AxTIF5.ocx"
+    ExecWait 'regsvr32.exe /s "$OUTDIR\AxTIF5.ocx"' $0
+    DetailPrint "結果: $0"
+  ${EndIf}
+
+  SetOutPath $INSTDIR
+
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegStr HKCR "CLSID\${CLSID}\EnableFullPage\.tif" "" ""
   WriteRegStr HKCR "CLSID\${CLSID}\EnableFullPage\.tiff" "" ""
+!insertmacro X86_AND_ANY64_END
 
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}" "DisplayName" "${TITLE}"
@@ -162,7 +196,7 @@ Section /o "${APP} for NPAPI(Firefox/Chrome) 通常版"
   Delete "$INSTDIR\npaxtif5.dll"
   Delete "$INSTDIR\npzzzaxtif5.dll"
   
-  File "/oname=$INSTDIR\npaxtif5.dll" "release\AxTIF5.ocx"
+  File "/oname=$INSTDIR\npaxtif5.dll" "${BINDIR_X86}\AxTIF5.ocx"
 SectionEnd
 
 Section "${APP} for NPAPI(Firefox/Chrome) 優先版 npzzzaxtif5"
@@ -176,7 +210,7 @@ Section "${APP} for NPAPI(Firefox/Chrome) 優先版 npzzzaxtif5"
   Delete "$INSTDIR\npaxtif5.dll"
   Delete "$INSTDIR\npzzzaxtif5.dll"
 
-  File "/oname=$INSTDIR\npzzzaxtif5.dll" "release\AxTIF5.ocx"
+  File "/oname=$INSTDIR\npzzzaxtif5.dll" "${BINDIR_X86}\AxTIF5.ocx"
 SectionEnd
 
 Section "関連付け追加(コンピュータ全体の設定)"
@@ -191,23 +225,33 @@ Section "関連付け追加(コンピュータ全体の設定)"
 SectionEnd
 
 Section    "簡易表示 On" ddcompat1
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegDWORD HKLM "Software\${COM}\${APP}" "ddcompat" 1
+!insertmacro X86_AND_ANY64_END
 SectionEnd
 
 Section /o "簡易表示 Off" ddcompat0
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegDWORD HKLM "Software\${COM}\${APP}" "ddcompat" 0
+!insertmacro X86_AND_ANY64_END
 SectionEnd
 
 Section /o "縮小表示 双線形フィルタ (20)" slowzoom20
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegDWORD HKLM "Software\${COM}\${APP}" "slowzoom" 20
+!insertmacro X86_AND_ANY64_END
 SectionEnd
 
 Section    "縮小表示 Halftone (15)" slowzoom15
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegDWORD HKLM "Software\${COM}\${APP}" "slowzoom" 15
+!insertmacro X86_AND_ANY64_END
 SectionEnd
 
 Section /o "縮小表示 標準 (10)" slowzoom10
+!insertmacro X86_AND_ANY64_BEGIN
   WriteRegDWORD HKLM "Software\${COM}\${APP}" "slowzoom" 10
+!insertmacro X86_AND_ANY64_END
 SectionEnd
 
 Section    "全サイトで起動許可(IE8-9) On" allowie1
@@ -296,7 +340,13 @@ FunctionEnd
 
 Section "Uninstall"
 
-  UnRegDLL "$INSTDIR\AxTIF5.ocx"
+  ExecWait 'regsvr32.exe /s /u "$INSTDIR\AxTIF5.ocx"' $0
+  DetailPrint "結果: $0"
+
+  ${If} ${IsNativeAMD64}
+    ExecWait 'regsvr32.exe /s /u "$INSTDIR\x64\AxTIF5.ocx"' $0
+    DetailPrint "結果: $0"
+  ${EndIf}
 
   ReadRegStr $0 HKCR "Mime\Database\Content Type\${MIME}" "CLSID"
   ${If} $0 == "${CLSID}"
@@ -312,6 +362,11 @@ Section "Uninstall"
   Delete "$INSTDIR\AxTIF5.ocx"
   Delete "$INSTDIR\npaxtif5.dll"
   Delete "$INSTDIR\npzzzaxtif5.dll"
+
+  ${If} ${IsNativeAMD64}
+    Delete "$INSTDIR\x64\AxTIF5.ocx"
+    RMDir  "$INSTDIR\x64"
+  ${EndIf}
 
   Delete "$INSTDIR\uninstall.exe"
 
