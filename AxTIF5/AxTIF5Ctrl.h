@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "TIFPart/TIFFInnerFrame.h"
+#include "../TIFPart/TIFFInnerFrame.h"
 
 // AxTIF5Ctrl.h : CAxTIF5Ctrl ActiveX コントロール クラスの宣言です。
 

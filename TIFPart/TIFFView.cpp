@@ -6,7 +6,7 @@
 
 #include "TIFFDoc.h"
 #include "TIFFView.h"
-#include "../RUt.h"
+#include "../AxTIF5/RUt.h"
 #include "PaperSizeUtil.h"
 #include "FitRect3.h"
 

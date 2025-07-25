@@ -15,6 +15,10 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+Unicode Debug/
+Unicode_Debug/
+Unicode Release/
+Unicode_Release/
 x64/
 x86/
 build/
@@ -194,5 +198,3 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-/Setup_AxTIF5_1_*.exe
-/Tmpver.nsh

@@ -62,7 +62,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../cximage600_full/CxImage/;../cximage600_full/tiff/;../gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -77,7 +77,7 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;TIFPart.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;./$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -92,7 +92,7 @@
       <HeaderFileName>$(ProjectName)idl.h</HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>./cximage600_full/CxImage/;./cximage600_full/tiff/;gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../cximage600_full/CxImage/;../cximage600_full/tiff/;../gecko-sdk-win32-msvc-1.8.0.4\gecko-sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -106,7 +106,7 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <AdditionalDependencies>cximage.lib;zlib.lib;Jpeg.lib;tiff.lib;jbig.lib;TIFPart.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>./cximage600_full/CxImage/$(Configuration)/;./cximage600_full/zlib/$(Configuration)/;./cximage600_full/jpeg/$(Configuration)/;./cximage600_full/tiff/$(Configuration)/;./cximage600_full/jbig/$(Configuration)/;./$(Configuration)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\AxTIF5.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -174,7 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AxTIF5.rc" />
-    <ResourceCompile Include="TIFPart\TIFPart.rc" />
+    <ResourceCompile Include="..\TIFPart\TIFPart.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

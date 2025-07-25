@@ -12,8 +12,8 @@ Unicode true
 
 !define COM   "HIRAOKA HYPERS TOOLS, Inc."
 
-!system 'DefineAsmVer.exe "RELEASE\${APP}.ocx" "!define VER ""[SVER]"" " > Tmpver.nsh'
-!include "Tmpver.nsh"
+!system 'DefineAsmVer.exe "RELEASE\${APP}.ocx" "!define VER ""[SVER]"" " > Appver.tmp'
+!include "Appver.tmp"
 !searchreplace APPVER ${VER} "." "_"
 
 !system 'MySign "Release\${APP}.ocx"'

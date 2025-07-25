@@ -5,8 +5,8 @@
 #include "AxTIF5Ctrl.h"
 #include "AxTIF5PropPage.h"
 
-#include "TIFPart/TIFFDoc.h"
-#include "TIFPart/TIFFView.h"
+#include "../TIFPart/TIFFDoc.h"
+#include "../TIFPart/TIFFView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
